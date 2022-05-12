@@ -1,0 +1,20 @@
+{
+  "name": "fmsc-typescript",
+  "version": "1.0.0",
+  "description": "Shortpaper 1",
+  "scripts": {
+    "start:build": "tsc",
+    "start:dev": "tsc -w -p .",
+    "main": "node dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FMSC-Group-UCAB/Typescript.git"
+  },
+  "author": "fmsc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FMSC-Group-UCAB/Typescript/issues"
+  },
+  "homepage": "https://github.com/FMSC-Group-UCAB/Typescript#readme"
+}
