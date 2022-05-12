@@ -1,6 +1,6 @@
 import {IValueObject} from '../interfaces/value-object.interface';
 
-class CaseFileHeight implements IValueObject<CaseFileHeight> {
+export class CaseFileHeight implements IValueObject<CaseFileHeight> {
 
     _height: number;
 

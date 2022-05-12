@@ -1,7 +1,7 @@
 import {IValueObject} from '../interfaces/value-object.interface';
 
 
-class CaseFileSaturation implements IValueObject<CaseFileSaturation> {
+export class CaseFileSaturation implements IValueObject<CaseFileSaturation> {
 
     _saturation: number;
 

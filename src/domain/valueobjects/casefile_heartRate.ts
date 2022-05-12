@@ -1,6 +1,6 @@
 import {IValueObject} from '../interfaces/value-object.interface';
 
-class CaseFileHeartRate implements IValueObject<CaseFileHeartRate> {
+export class CaseFileHeartRate implements IValueObject<CaseFileHeartRate> {
 
     _heartRate: number;
 

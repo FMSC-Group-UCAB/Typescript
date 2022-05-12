@@ -1,6 +1,6 @@
 import {IValueObject} from '../interfaces/value-object.interface';
 
-class caseFileAlbumin implements IValueObject<caseFileAlbumin> {
+ export class caseFileAlbumin implements IValueObject<caseFileAlbumin> {
 
     _albumin: number;
 

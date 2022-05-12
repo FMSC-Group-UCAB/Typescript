@@ -1,6 +1,6 @@
 import {IValueObject} from '../interfaces/value-object.interface';
 
-class CaseFilePersonalBg implements IValueObject<CaseFilePersonalBg> {
+export class CaseFilePersonalBg implements IValueObject<CaseFilePersonalBg> {
     
     _personalBg: String;
 

@@ -1,6 +1,6 @@
 import {IValueObject} from '../interfaces/value-object.interface';
 
-class CaseFileBloodPressure implements IValueObject<CaseFileBloodPressure> {
+export class CaseFileBloodPressure implements IValueObject<CaseFileBloodPressure> {
 
     bloodPressure: String;
 

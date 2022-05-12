@@ -1,6 +1,6 @@
 import {IValueObject} from '../interfaces/value-object.interface';
 
-class CaseFileId implements IValueObject<CaseFileId> {
+export class CaseFileId implements IValueObject<CaseFileId> {
 
     _id: number;
 

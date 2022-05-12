@@ -1,6 +1,6 @@
 import {IValueObject} from '../interfaces/value-object.interface';
 
-class caseFileCholesterol implements IValueObject<caseFileCholesterol> {
+export class caseFileCholesterol implements IValueObject<caseFileCholesterol> {
 
     _cholesterol: number;
 

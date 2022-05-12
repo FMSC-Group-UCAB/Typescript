@@ -1,6 +1,6 @@
 import {IValueObject} from '../interfaces/value-object.interface';
 
-class caseFileWeight implements IValueObject<caseFileWeight> {
+export class caseFileWeight implements IValueObject<caseFileWeight> {
 
     _weight: number;
 
