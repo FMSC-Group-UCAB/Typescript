@@ -1,6 +1,6 @@
 import {IValueObject} from '../interfaces/value-object.interface';
 
-export class caseFileWeight implements IValueObject<caseFileWeight> {
+export class CaseFileWeight implements IValueObject<CaseFileWeight> {
 
     _weight: number;
 
@@ -8,7 +8,7 @@ export class caseFileWeight implements IValueObject<caseFileWeight> {
         this._weight = weight;
     }
 
-    equals(other: caseFileWeight): boolean {
+    equals(other: CaseFileWeight): boolean {
         return this._weight == other._weight;
     }
 }
