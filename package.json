@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/FMSC-Group-UCAB/Typescript/issues"
   },
-  "homepage": "https://github.com/FMSC-Group-UCAB/Typescript#readme"
+  "homepage": "https://github.com/FMSC-Group-UCAB/Typescript#readme",
+  "dependencies": {
+    "typescript": "^4.6.4"
+  }
 }
