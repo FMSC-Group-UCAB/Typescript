@@ -2,13 +2,17 @@ import {IValueObject} from '../interfaces/value-object.interface';
 
 export class CaseFileHeight implements IValueObject<CaseFileHeight> {
 
-    _height: number;
+    private height: number;
 
     constructor(height: number) {
-        this._height = height;
+        this.height = height;
     }
 
     equals(other: CaseFileHeight): boolean {
-        return this._height == other._height;
+        return this.height == other.height;
+    }
+
+    getHeight(): number {
+        return this.height;
     }
 }

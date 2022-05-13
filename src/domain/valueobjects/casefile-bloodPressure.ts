@@ -2,7 +2,7 @@ import {IValueObject} from '../interfaces/value-object.interface';
 
 export class CaseFileBloodPressure implements IValueObject<CaseFileBloodPressure> {
 
-    bloodPressure: String;
+    private bloodPressure: String;
 
     constructor(bloodPressure: String) {
         this.bloodPressure = bloodPressure;
@@ -10,5 +10,9 @@ export class CaseFileBloodPressure implements IValueObject<CaseFileBloodPressure
 
     equals(other: CaseFileBloodPressure): boolean {
         return this.bloodPressure == other.bloodPressure;
+    }
+
+    getBloodPressure(): String {
+        return this.bloodPressure;
     }
 }

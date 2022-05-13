@@ -3,14 +3,17 @@ import {IValueObject} from '../interfaces/value-object.interface';
 
 export class CaseFileSaturation implements IValueObject<CaseFileSaturation> {
 
-    _saturation: number;
+    private saturation: number;
 
     constructor(saturation: number) {
-        this._saturation = saturation;
+        this.saturation = saturation;
     }
 
     equals(other: CaseFileSaturation): boolean {
-        return this._saturation == other._saturation;
+        return this.saturation == other.saturation;
     }
 
+    getSaturation(): number {
+        return this.saturation;
+    }
 }
