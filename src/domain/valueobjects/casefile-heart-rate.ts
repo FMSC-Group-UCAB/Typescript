@@ -2,14 +2,18 @@ import {IValueObject} from '../interfaces/value-object.interface';
 
 export class CaseFileHeartRate implements IValueObject<CaseFileHeartRate> {
 
-    _heartRate: number;
+    private heartRate: number;
 
     constructor(heartRate: number) {
-        this._heartRate = heartRate;
+        this.heartRate = heartRate;
     }
 
     equals(other: CaseFileHeartRate): boolean {
-        return this._heartRate == other._heartRate;
+        return this.heartRate == other.heartRate;
     }
 
+    getHeartRate(): number {
+        return this.heartRate;
+    }
+    
 }

@@ -1,14 +1,18 @@
 import {IValueObject} from '../interfaces/value-object.interface';
 
- export class caseFileAlbumin implements IValueObject<caseFileAlbumin> {
+ export class CaseFileAlbumin implements IValueObject<CaseFileAlbumin> {
 
-    _albumin: number;
+    private albumin: number;
 
     constructor(albumin: number) {
-        this._albumin = albumin;
+        this.albumin = albumin;
     }
 
-    equals(other: caseFileAlbumin): boolean {
-        return this._albumin == other._albumin;
+    equals(other: CaseFileAlbumin): boolean {
+        return this.albumin == other.albumin;
+    }
+
+    getAlbumin(): number {
+        return this.albumin;
     }
 }

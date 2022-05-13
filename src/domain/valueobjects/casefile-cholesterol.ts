@@ -1,14 +1,18 @@
 import {IValueObject} from '../interfaces/value-object.interface';
 
-export class caseFileCholesterol implements IValueObject<caseFileCholesterol> {
+export class CaseFileCholesterol implements IValueObject<CaseFileCholesterol> {
 
-    _cholesterol: number;
+    private cholesterol: number;
 
     constructor(cholesterol: number) {
-        this._cholesterol = cholesterol;
+        this.cholesterol = cholesterol;
     }
 
-    equals(other: caseFileCholesterol): boolean {
-        return this._cholesterol == other._cholesterol;
+    equals(other: CaseFileCholesterol): boolean {
+        return this.cholesterol == other.cholesterol;
+    }
+
+    getCholesterol(): number {
+        return this.cholesterol;
     }
 }

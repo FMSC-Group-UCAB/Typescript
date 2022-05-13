@@ -8,25 +8,41 @@ import { CaseFileSaturation } from '../valueobjects/casefile-saturation';
 import { SpecialtyType } from '../enumerations/specialty-type';
 
 export abstract class CaseFile {
-    _id: CaseFileId;
-    _bloodPressure: CaseFileBloodPressure;
-    _height: CaseFileHeight;
-    _weight: CaseFileWeight;
-    _heartRate: CaseFileHeartRate;
-    _personalBg: CaseFilePersonalBg;
-    _saturation: CaseFileSaturation;
+    private id: CaseFileId;
+    private bloodPressure: CaseFileBloodPressure;
+    private height: CaseFileHeight;
+    private weight: CaseFileWeight;
+    private heartRate: CaseFileHeartRate;
+    private personalBg: CaseFilePersonalBg;
+    private saturation: CaseFileSaturation;
 
     constructor(id: CaseFileId, bloodPressure: CaseFileBloodPressure, height: CaseFileHeight, weight: CaseFileWeight, heartRate: CaseFileHeartRate, personalBg: CaseFilePersonalBg, saturation: CaseFileSaturation) {
-        this._id = id;
-        this._bloodPressure = bloodPressure;
-        this._height = height;
-        this._weight = weight;
-        this._heartRate = heartRate;
-        this._personalBg = personalBg;
-        this._saturation = saturation;
+        this.id = id;
+        this.bloodPressure = bloodPressure;
+        this.height = height;
+        this.weight = weight;
+        this.heartRate = heartRate;
+        this.personalBg = personalBg;
+        this.saturation = saturation;
     }
 
     abstract updateCaseFile(other: CaseFile): void
     //El static no se puede poner por el abstract
     abstract fromSpecialty(specialty: SpecialtyType, object): CaseFile
+
+
+    getId() { return this.id; }
+
+    getBloodPressure(): CaseFileBloodPressure { return this.bloodPressure; }
+
+    getHeight(): CaseFileHeight { return this.height; }
+
+    getWeight(): CaseFileWeight { return this.weight; }    
+
+    getHeartRate(): CaseFileHeartRate { return this.heartRate; }
+
+    getPersonalBg(): CaseFilePersonalBg { return this.personalBg; }
+
+    getSaturation(): CaseFileSaturation { return this.saturation; }
+    
 }

@@ -2,13 +2,17 @@ import {IValueObject} from '../interfaces/value-object.interface';
 
 export class CaseFilePersonalBg implements IValueObject<CaseFilePersonalBg> {
     
-    _personalBg: String;
+    private personalBg: String;
 
     constructor(personalBg: String) {
-        this._personalBg = personalBg;
+        this.personalBg = personalBg;
     }
 
     equals(other: CaseFilePersonalBg): boolean {
-        return this._personalBg == other._personalBg;
+        return this.personalBg == other.personalBg;
+    }
+
+    getPersonalBg(): String {
+        return this.personalBg;
     }
 }
