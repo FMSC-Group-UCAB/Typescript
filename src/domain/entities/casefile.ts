@@ -30,19 +30,19 @@ export abstract class CaseFile {
     //El static no se puede poner por el abstract
     abstract fromSpecialty(specialty: SpecialtyType, object): CaseFile
 
-    abstract getId(): CaseFileId
 
-    abstract getBloodPressure(): CaseFileBloodPressure
+    getId() { return this.id; }
 
-    abstract getHeight(): CaseFileHeight
+    getBloodPressure(): CaseFileBloodPressure { return this.bloodPressure; }
 
-    abstract getWeight(): CaseFileWeight
+    getHeight(): CaseFileHeight { return this.height; }
 
-    abstract getHeartRate(): CaseFileHeartRate
+    getWeight(): CaseFileWeight { return this.weight; }    
 
-    abstract getPersonalBg(): CaseFilePersonalBg
+    getHeartRate(): CaseFileHeartRate { return this.heartRate; }
 
-    abstract getSaturation(): CaseFileSaturation
+    getPersonalBg(): CaseFilePersonalBg { return this.personalBg; }
 
+    getSaturation(): CaseFileSaturation { return this.saturation; }
     
 }
