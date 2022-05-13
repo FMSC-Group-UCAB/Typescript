@@ -1,11 +1,11 @@
-import {CaseFileId} from '../valueobjects/casefile_id';
-import {CaseFileBloodPressure} from '../valueobjects/casefile_bloodPressure';
-import {CaseFileHeight} from '../valueobjects/casefile_height';
-import {CaseFileWeight} from '../valueobjects/casefile_weight';
-import {CaseFileHeartRate} from '../valueobjects/casefile_heartRate';
-import {CaseFilePersonalBg} from '../valueobjects/casefile_personalBg';
-import {CaseFileSaturation} from '../valueobjects/casefile_saturation';
-import {SpecialtyType} from '../enumerations/specialty_type';
+import { CaseFileId } from '../valueobjects/casefile-id';
+import { CaseFileBloodPressure } from '../valueobjects/casefile-bloodPressure';
+import { CaseFileHeight } from '../valueobjects/casefile-height';
+import { CaseFileWeight } from '../valueobjects/casefile-weight';
+import { CaseFileHeartRate } from '../valueobjects/casefile-heart-rate';
+import { CaseFilePersonalBg } from '../valueobjects/casefile-personal-bg';
+import { CaseFileSaturation } from '../valueobjects/casefile-saturation';
+import { SpecialtyType } from '../enumerations/specialty-type';
 
 export abstract class CaseFile {
     _id: CaseFileId;
@@ -28,5 +28,5 @@ export abstract class CaseFile {
 
     abstract updateCaseFile(other: CaseFile): void
     //El static no se puede poner por el abstract
-    abstract  fromSpecialty(specialty: SpecialtyType, object): CaseFile
+    abstract fromSpecialty(specialty: SpecialtyType, object): CaseFile
 }

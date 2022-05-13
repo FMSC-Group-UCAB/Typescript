@@ -1,4 +1,4 @@
-import {IValueObject} from '../interfaces/value-object.interface';
+import { IValueObject } from '../interfaces/value-object.interface';
 
 export class CaseFileWeight implements IValueObject<CaseFileWeight> {
 
