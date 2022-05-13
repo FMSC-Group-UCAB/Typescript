@@ -4,7 +4,7 @@ import { IValueObject } from "../interfaces/value-object.interface";
 export class SuscriptionId implements IValueObject<SuscriptionId>{
     private constructor(private readonly id: number) { }
 
-    get Id() { return this.id; }
+    get Value() { return this.id; }
 
     equals(other: SuscriptionId): boolean {
         return this.id == other.id;

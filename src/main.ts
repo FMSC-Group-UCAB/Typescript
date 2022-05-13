@@ -1,3 +1,6 @@
+import { Suscription } from "./domain/entities/suscription";
+import { SuscriptionCostType } from "./domain/enumerations/suscription-cost-type.enum";
+import { SuscriptionType } from "./domain/enumerations/suscription-type.enum";
 import { DomainEvent } from "./domain/observables/domain-event";
 import { Observable } from "./domain/observables/observable";
 import { Observer } from "./domain/observables/observer.interface";
@@ -46,9 +49,20 @@ async function main() {
     const observable = new NuevoObservable();
     const observador = new NuevoObservador();
     observable.add(observador);
-    await observable.run();
+    //await observable.run();
 
     //suscriptionTest();
+
+    const suscription = Suscription.create(
+        SuscriptionId.create(1),
+        SuscriptionType.Monthly,
+        SuscriptionCostType.basic,
+        SuscriptionCreatedAt.create(new Date()),
+        SuscriptionPaidAt.create(new Date()),
+        null
+    );
+
+    console.log(suscription.Id.Value);
 }
 
 
