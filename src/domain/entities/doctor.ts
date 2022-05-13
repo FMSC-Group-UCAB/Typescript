@@ -1,9 +1,9 @@
 import { DoctorId } from "../valueobjects/doctor_id";
 import { DoctorFirstName } from "../valueobjects/doctor_first_name";
 import { DoctorLastName } from "../valueobjects/doctor_last_name";
-import { SpecialtyType } from "../enumerations/specialty_type";
+import { SpecialtyType } from "../enumerations/specialty-type.enum";
 import { DoctorLocation } from "../valueobjects/doctor_location";
-import { HoldType } from "../enumerations/hold_type";
+import { HoldType } from "../enumerations/hold-type.enum";
 
 
 export class Doctor {

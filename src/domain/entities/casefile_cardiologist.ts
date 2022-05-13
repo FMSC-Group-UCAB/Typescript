@@ -6,7 +6,7 @@ import { CaseFileWeight } from "../valueobjects/casefile_weight";
 import { CaseFileHeartRate } from "../valueobjects/casefile_heartRate";
 import { CaseFilePersonalBg } from "../valueobjects/casefile_personalBg";
 import { CaseFileSaturation } from "../valueobjects/casefile_saturation";
-import { SpecialtyType } from "../enumerations/specialty_type";
+import { SpecialtyType } from "../enumerations/specialty-type.enum";
 
 
 export class CaseFileCardiologist extends CaseFile {
