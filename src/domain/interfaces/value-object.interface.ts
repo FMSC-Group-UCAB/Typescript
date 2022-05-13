@@ -1,5 +1,9 @@
-/** IValueObject: Es una interfaz genérica utilizada para implementar value objects.
- *  @function(other: T) {boolean} equals: Compara la igualdad de dos value objects.*/
+/** IValueObject: Es una interfaz genérica utilizada para implementar Value Objects.
+ *  @typeParam `T` Tipo del parametro del Value Object*/
 export interface IValueObject<T> {
-    equals(other: T): boolean
+    /**
+     * Compara la igualdad de dos Value Objects
+     * @param other Value Object a comparar.
+     * @returns `boolean`*/
+    equals(other: T): boolean;
 }
