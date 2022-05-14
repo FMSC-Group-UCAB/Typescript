@@ -2,17 +2,23 @@ import {IValueObject} from '../interfaces/value-object.interface';
 
 export class CaseFileBloodPressure implements IValueObject<CaseFileBloodPressure> {
 
-    private bloodPressure: String;
-
-    constructor(bloodPressure: String) {
-        this.bloodPressure = bloodPressure;
-    }
+    private constructor(private readonly bloodPressure: String) { }
 
     equals(other: CaseFileBloodPressure): boolean {
         return this.bloodPressure == other.bloodPressure;
     }
+    /**
+     * Patron Factory.
+     * @param bloodPressure La presion arterial del paciente
+     * @returns `CaseFileBloodPressure` */
 
-    getBloodPressure(): String {
-        return this.bloodPressure;
+    static create(bloodPressure: String): CaseFileBloodPressure { 
+        if ( bloodPressure == null || bloodPressure == undefined) {
+            throw new Error("La presion no puede ser undefined/null.");
+        }
+        return new CaseFileBloodPressure(bloodPressure); 
     }
+
+    //getter
+    get BloodPressure(): String { return this.bloodPressure; }
 }
