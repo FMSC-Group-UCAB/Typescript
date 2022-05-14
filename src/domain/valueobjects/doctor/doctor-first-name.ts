@@ -1,9 +1,10 @@
-import { IValueObject } from '../../interfaces/value-object.interface';
+import {IValueObject} from '../../interfaces/value-object.interface';
 
 export class DoctorFirstName implements IValueObject<DoctorFirstName> {
+
     private constructor(private readonly firstName: String) { }
 
-    get Value() { return this.firstName; }
+    get ValueFirstName() { return this.firstName; }
 
     equals(other: DoctorFirstName): boolean {
         return this.firstName == other.firstName;
@@ -12,9 +13,10 @@ export class DoctorFirstName implements IValueObject<DoctorFirstName> {
     /**
      * Patron Factory
      * @param firstName nombre del doctor
-     * @returns `DoctorFirstName` */
+     * @returns `DoctorFirstName`
+     */
     public static create(firstName: String): DoctorFirstName {
-        if (firstName == null || firstName == undefined) {
+        if (firstName == null || firstName == undefined){
             throw new Error('El nombre del doctor no puede ser null/undefined.');
         }
         return new DoctorFirstName(firstName);
