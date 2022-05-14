@@ -30,16 +30,6 @@ export class Patient {
     get Phone() { return this.phone; }
     get Occupation() { return this.occupation; }
 
-
-    //Setters
-    set FirstName(firstName: PatientFirstName) { this.firstName = firstName; }
-    set LastName(lastName: PatientLastName) { this.lastName = lastName; }
-    set BirthDate(birthDate: PatientBirthDate) { this.birthDate = birthDate; }
-    set Email(email: PatientEmail) { this.email = email; }
-    set Phone(phone: PatientPhoneNumber) { this.phone = phone; }
-    set Occupation(occupation: PatientOccupation) { this.occupation = occupation; }
-    
-
     /** Patron Factory.
      * @param id Identificador del paciente.
      * @param firstName Nombre del paciente.
@@ -53,6 +43,23 @@ export class Patient {
         return new Patient(id, firstName, lastName, birthDate, email, phone, occupation);
     }
 
+    /**
+     * Permite actualizar los datos del paciente.
+     * @param firstName Nombre del paciente.
+     * @param lastName Apellido del paciente.
+     * @param birthDate Fecha de nacimiento del paciente.
+     * @param email Correo electrónico del paciente.
+     * @param phone Número de teléfono del paciente.
+     * @param occupation Ocupación del paciente. */
+    public update(firstName: PatientFirstName, lastName: PatientLastName, birthDate: PatientBirthDate, email: PatientEmail, phone: PatientPhoneNumber, occupation: PatientOccupation) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.email = email;
+        this.phone = phone;
+        this.occupation = occupation;
+        this.validate();
+    }
 
     /** Valida los atributos de la entidad.*/
     private validate(): void {

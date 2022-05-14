@@ -58,15 +58,15 @@ export class CaseFileCardiologist extends CaseFile {
         );
     }
 
+    updateExtras(extras: any): void {
+        this.albumin = CaseFileAlbumin.create(extras['albumin'], this.albumin.rangeValue);
+        this.cholesterol = CaseFileCholesterol.create(extras['cholesterol'], this.cholesterol.rangeValue);
+        this.validate();
+    }
+
     protected validate(): void {
         if (this.Albumin == null || this.Albumin == undefined) { throw new Error("La albumina no puede ser nula/undefined"); }
         if (this.Cholesterol == null || this.Cholesterol == undefined) { throw new Error("El colesterol no puede ser nulo/undefined"); }
         super.validate();
-    }
-
-    updateCaseFileExtras(extras: any): void {
-        this.albumin = CaseFileAlbumin.create(extras['albumin'], this.albumin.rangeValue);
-        this.cholesterol = CaseFileCholesterol.create(extras['cholesterol'], this.cholesterol.rangeValue);
-        this.validate();
     }
 }

@@ -65,7 +65,7 @@ export abstract class CaseFile {
      * @param personalBg Antecedentes personales del paciente
      * @param saturation Saturacion de oxigeno del paciente
      * @param extra Información extra necesaria para el tipo de casefile.*/
-    public updateCaseFile(bloodPressure: CaseFileBloodPressure, height: CaseFileHeight, weight: CaseFileWeight, heartRate: CaseFileHeartRate, personalBg: CaseFilePersonalBg, saturation: CaseFileSaturation, extras: any): void {
+    public update(bloodPressure: CaseFileBloodPressure, height: CaseFileHeight, weight: CaseFileWeight, heartRate: CaseFileHeartRate, personalBg: CaseFilePersonalBg, saturation: CaseFileSaturation, extras: any): void {
         this.bloodPressure = bloodPressure;
         this.height = height;
         this.weight = weight;
@@ -73,11 +73,11 @@ export abstract class CaseFile {
         this.personalBg = personalBg;
         this.saturation = saturation;
 
-        this.updateCaseFileExtras(extras);
+        this.updateExtras(extras);
     }
 
     /**
      * Método para actualizar datos extras de cada casefile.
      * @param extras Información extra necesaria para el tipo de casefile.*/
-    protected abstract updateCaseFileExtras(extras: any): void;
+    protected abstract updateExtras(extras: any): void;
 }

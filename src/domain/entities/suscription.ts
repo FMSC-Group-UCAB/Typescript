@@ -18,6 +18,7 @@ export class Suscription {
         this.validate();
     }
 
+    //Getters
     get Id() { return this.id; }
     get Type() { return this.type; }
     get Cost() { return this.cost; }
@@ -36,6 +37,20 @@ export class Suscription {
      * @returns `Suscription`*/
     public static create(id: SuscriptionId, type: SuscriptionType, cost: SuscriptionCostType, createdAt: SuscriptionCreatedAt, paidAt: SuscriptionPaidAt, closedAt: SuscriptionClosedAt): Suscription {
         return new Suscription(id, type, cost, createdAt, paidAt, closedAt);
+    }
+
+    /**
+     * Método que permite actualizar una suscripción.
+     * @param type Tipo de suscripción.
+     * @param cost Tipo de costo de la suscripción.
+     * @param paidAt Fecha de pago de la suscripción.
+     * @param closedAt Fecha de cierre de la suscripción.*/
+    public update(type: SuscriptionType, cost: SuscriptionCostType, paidAt: SuscriptionPaidAt, closedAt: SuscriptionClosedAt) {
+        this.type = type;
+        this.cost = cost;
+        this.paidAt = paidAt;
+        this.closedAt = closedAt;
+        this.validate();
     }
 
     /** Valida los atributos de la entidad.*/

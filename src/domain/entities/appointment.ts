@@ -6,8 +6,7 @@ import { AppointmentFeedback } from "../valueobjects/appointment/appointment-fee
 import { AppointmentId } from "../valueobjects/appointment/appointment-id";
 
 /** Appointment: Es una clase concreta que representa una cita entre un paciente y un doctor. */
-export class Appointment{
-
+export class Appointment {
     private constructor(
         private readonly id: AppointmentId,
         private status: StatusType,
@@ -15,26 +14,17 @@ export class Appointment{
         private type: AppointmentType,
         private feedback: AppointmentFeedback,
         private specialty: SpecialtyType
-    ){
+    ) {
         this.validate();
     }
 
     //Getters
-    get Id(){ return this.id; }
-    get Status(){ return this.status; }
-    get Date(){ return this.date; }
-    get Type(){ return this.type; }
-    get Feedback(){ return this.feedback; }
-    get Specialty(){ return this.specialty; }
-
-
-    //Setters
-    set Status(status: StatusType){ this.status = status; }
-    set Date(date: AppointmentDate){ this.date = date; }
-    set Type(type: AppointmentType){ this.type = type; }
-    set Feedback(feedback: AppointmentFeedback){ this.feedback = feedback; }
-    set Specialty(specialty: SpecialtyType){ this.specialty = specialty; }
-
+    get Id() { return this.id; }
+    get Status() { return this.status; }
+    get Date() { return this.date; }
+    get Type() { return this.type; }
+    get Feedback() { return this.feedback; }
+    get Specialty() { return this.specialty; }
 
     /** Patron Factory.
      * @param id Identificador del cita.
@@ -44,8 +34,22 @@ export class Appointment{
      * @param feedback Feedback de la cita.
      * @param specialty Especialidad de la cita.
      * @returns `Appointment`*/
-    public static create(id: AppointmentId, status: StatusType, date: AppointmentDate, type: AppointmentType, feedback: AppointmentFeedback, specialty: SpecialtyType): Appointment{
+    public static create(id: AppointmentId, status: StatusType, date: AppointmentDate, type: AppointmentType, feedback: AppointmentFeedback, specialty: SpecialtyType): Appointment {
         return new Appointment(id, status, date, type, feedback, specialty);
+    }
+
+    /**
+     * Permite actualizar los datos de una cita.
+     * @param status Estado de la cita.
+     * @param date Fecha de la cita.
+     * @param type Tipo de cita.
+     * @param feedback Feedback de la cita.*/
+    public update(status: StatusType, date: AppointmentDate, type: AppointmentType, feedback: AppointmentFeedback) {
+        this.status = status;
+        this.date = date;
+        this.type = type;
+        this.feedback = feedback;
+        this.validate();
     }
 
     /** Valida los atributos de la entidad.*/
