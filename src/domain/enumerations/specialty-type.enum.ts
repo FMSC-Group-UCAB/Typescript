@@ -1,4 +1,6 @@
+/**SpecialiyType: Es un tipo enumerado utilizado para las diferentes especialidades medicas existentes */
 export enum SpecialtyType {
-    CARDIOLOGIST,
-    GENERALPRACTITIONER
+    CARDIOLOGY,
+    OPHTHALMOLOGY,
+    OTOLARYNGOLOGY
 }

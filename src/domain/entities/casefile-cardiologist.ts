@@ -6,7 +6,7 @@ import { CaseFileWeight } from "../valueobjects/casefile-weight";
 import { CaseFileHeartRate } from "../valueobjects/casefile-heart-rate";
 import { CaseFilePersonalBg } from "../valueobjects/casefile-personal-bg";
 import { CaseFileSaturation } from "../valueobjects/casefile-saturation";
-import { SpecialtyType } from "../enumerations/specialty-type";
+import { SpecialtyType } from "../enumerations/specialty-type.enum";
 import { CaseFileAlbumin } from "../valueobjects/casefile-albumin";
 import { CaseFileCholesterol } from "../valueobjects/casefile-cholesterol";
 
