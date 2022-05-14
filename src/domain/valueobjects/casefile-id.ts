@@ -2,17 +2,24 @@ import {IValueObject} from '../interfaces/value-object.interface';
 
 export class CaseFileId implements IValueObject<CaseFileId> {
 
-    private id: number;
+    private constructor(private readonly id: number) { }
 
-    constructor(id: number) {
-        this.id = id;
-    }
 
     equals(other: CaseFileId): boolean {
         return this.id == other.id;
     }
+    /**
+     * Patron Factory.
+     * @param id identificador de la historia medica
+     * @returns `CaseFileId` */
 
-    getId(): number {
-        return this.id;
+    static create(id: number): CaseFileId { 
+        if ( id == null || id == undefined) {
+            throw new Error("El id no puede ser undefined/null.");
+        }
+
+        return new CaseFileId(id);
     }
+    //Getter
+    get Id(): number { return this.id; }
 }
