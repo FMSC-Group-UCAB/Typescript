@@ -20,12 +20,19 @@ export class Doctor {
         this.validate();
     }
 
-        get Id(){ return this.Id; }
-        get FirstName(){ return this.FirstName; }
-        get LastName(){ return this.LastName; }
-        get Specialty(){ return this.Specialty; }    
-        get Location(){ return this.Location; }
-        get HoldType(){ return this.HoldType; }
+        get Id(){ return this.id; }
+        get FirstName(){ return this.firstName; }
+        get LastName(){ return this.lastName; }
+        get Specialty(){ return this.specialty; }    
+        get Location(){ return this.location; }
+        get HoldType(){ return this.holdType; }
+
+        set FirstName( firstName: DoctorFirstName ) { this.firstName = firstName }
+        set LastName( lastName: DoctorLastName ) { this.lastName = lastName }
+        set Specialty( specialty: Array<SpecialtyType> ) { this.specialty = specialty }
+        set Location ( location: DoctorLocation ) { this.location = location }
+        set HoldType ( holdType: HoldType ) { this.holdType = holdType }
+
 
         /**
          * Patron Factory

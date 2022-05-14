@@ -5,8 +5,8 @@ export class DoctorLocation implements IValueObject<DoctorLocation> {
 
     private constructor(private readonly latitude: String, private readonly longitude: String ) { }
 
-    get Latitude() { return this.latitude; }
-    get Longitude() { return this.longitude; }
+    get ValueLatitude() { return this.latitude; }
+    get ValueLongitude() { return this.longitude; }
 
     equals(other: DoctorLocation): boolean {
         return this.latitude == other.latitude && this.longitude == this.longitude;
