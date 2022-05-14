@@ -2,17 +2,23 @@ import { IValueObject } from '../interfaces/value-object.interface';
 
 export class CaseFileWeight implements IValueObject<CaseFileWeight> {
 
-    private weight: number;
 
-    constructor(weight: number) {
-        this.weight = weight;
-    }
+    private constructor(private readonly weight: number) {}
 
     equals(other: CaseFileWeight): boolean {
         return this.weight == other.weight;
     }
-
-    getWeight(): number {
-        return this.weight;
+    /**
+     * Patron Factory.
+     * @param weight Peso del paciente
+     * @returns `CaseFileWeight`
+     */
+    static create(weight: number): CaseFileWeight {
+        if ( weight == null || weight == undefined ) {
+            throw new Error("El peso no puede ser undefined/null.");
+        }
+        return new CaseFileWeight(weight);
     }
+    //getter
+    get Weight(): number { return this.weight; }
 }

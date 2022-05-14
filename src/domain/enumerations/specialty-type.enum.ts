@@ -2,5 +2,5 @@
 export enum SpecialtyType {
     CARDIOLOGY,
     OPHTHALMOLOGY,
-    OTOLARYNGOLOGY,
+    OTOLARYNGOLOGY
 }
