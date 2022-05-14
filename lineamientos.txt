@@ -1,0 +1,40 @@
+Lineamientos de estructura del Código
+
+Dart: 
+
+•	Los atributos de clases comienzan con _ definiendo que son privados ya que Dart no tiene la palabra reservada private o protected.
+•	Los atributos de los Value Object son constantes y no tienen métodos “Setter”, si se quiere cambiar el valor se crea otro Value Object.
+•	Los getters de las clases emiezan con value seguido del nombre del atributo en los value objects.
+•	El nombre de los setters empieza en minúscula y lleva el nombre del atributo.
+•	Los métodos de las clases van en camel case.
+•	El orden de los bloques de código en las clases es el siguiente: 
+
+	•	Definición de atributos de la clase.
+	•	Getters y Setters
+	•	Constructor
+	•	Patrón Factory (Si aplica)
+	•	Métodos
+
+•	El nombre de los archivos es todo en minúscula y si tiene más de una palabra separado por _.
+•	El nombre de las carpetas va todos en minúsculas
+•	Los valores de los tipos enumerados van todos en mayúsculas.
+
+TypeScript:
+
+•	Los atributos van en camel case con private o protected dependiendo, los id son readonly.
+•	 Los atributos de los Value Object son readonly y no tienen métodos “Setter”, si se quiere cambiar el valor se crea otro Value Object.
+•	Los getters de las clases emiezan con Value seguido del nombre del atributo en los value objects cuando es mas de uno.
+•	Los getters de las clases que no son value objects se llaman como el atributo empezando en mayúscula.
+•	El nombre de los setters se llaman como el atributo empezando en mayúscula.
+•	Los métodos de las clases van en camel case.
+•	El orden de los bloques de código en las clases es el siguiente: 
+
+	•	Definición de atributos de la clase.
+	•	Getters y Setters
+	•	Constructor
+	•	Patrón Factory (Si aplica)
+	•	Métodos
+
+•	El nombre de los archivos es todo en minúscula y si tiene mas de una palabra es separado por -.
+•	El nombre de las carpetas va todo en minúscula.
+•	Los valores de los tipos enumerados van todos en Mayúscula.
