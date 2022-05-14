@@ -6,7 +6,7 @@ export class PatientId implements IValueObject<PatientId>{
     private constructor(private readonly id: number) { }
 
     //Getter
-    get Value() { return this.id; }
+    get ValueId() { return this.id; }
 
 
     equals(other: PatientId): boolean {

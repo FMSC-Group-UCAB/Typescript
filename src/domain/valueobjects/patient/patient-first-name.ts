@@ -5,7 +5,7 @@ export class PatientFirstName implements IValueObject<PatientFirstName> {
     private constructor(private readonly firstName: string) { }
 
     //Getter
-    get Value() { return this.firstName; }
+    get ValueFirstName() { return this.firstName; }
 
 
     equals(other: PatientFirstName): boolean {

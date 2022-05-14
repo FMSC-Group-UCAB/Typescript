@@ -6,7 +6,7 @@ export class PatientEmail implements IValueObject<PatientEmail> {
     private constructor(private readonly email: string) { }
 
     //Getter
-    get Value() { return this.email; }
+    get ValueEmail() { return this.email; }
 
 
     equals(other: PatientEmail): boolean {

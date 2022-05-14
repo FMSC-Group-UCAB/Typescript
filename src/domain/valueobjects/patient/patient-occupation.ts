@@ -6,7 +6,7 @@ export class PatientOccupation implements IValueObject<PatientOccupation> {
     private constructor(private readonly occupation: string) { }
 
     //Getter
-    get Value() { return this.occupation; }
+    get ValueOccupation() { return this.occupation; }
 
 
     equals(other: PatientOccupation): boolean {
