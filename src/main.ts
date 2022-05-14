@@ -55,8 +55,8 @@ async function main() {
 
     const suscription = Suscription.create(
         SuscriptionId.create(1),
-        SuscriptionType.Monthly,
-        SuscriptionCostType.basic,
+        SuscriptionType.MONTHLY,
+        SuscriptionCostType.BASIC,
         SuscriptionCreatedAt.create(new Date()),
         SuscriptionPaidAt.create(new Date()),
         null
