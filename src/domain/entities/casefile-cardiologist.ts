@@ -6,20 +6,15 @@ import { CaseFileHeartRate } from "../valueobjects/casefile/casefile-heart-rate"
 import { CaseFileHeight } from "../valueobjects/casefile/casefile-height";
 import { CaseFileId } from "../valueobjects/casefile/casefile-id";
 import { CaseFilePersonalBg } from "../valueobjects/casefile/casefile-personal-bg";
+import { CaseFileRange } from "../valueobjects/casefile/casefile-range";
 import { CaseFileSaturation } from "../valueobjects/casefile/casefile-saturation";
-import { CaseFileType } from "../valueobjects/casefile/casefile-type";
 import { CaseFileWeight } from "../valueobjects/casefile/casefile-weight";
 import { CaseFile } from "./casefile";
 
 export class CaseFileCardiologist extends CaseFile {
-    protected readonly type: CaseFileType = CaseFileType.create(0);
     protected readonly specialtyType: SpecialtyType = SpecialtyType.CARDIOLOGY;
     private cholesterol: CaseFileCholesterol;
     private albumin: CaseFileAlbumin;
-
-    //Setters
-    set Albumin(albumin: CaseFileAlbumin) { this.albumin = albumin; }
-    set Cholesterol(cholesterol: CaseFileCholesterol) { this.cholesterol = cholesterol; }
 
     //Getters
     get Albumin(): CaseFileAlbumin { return this.albumin; }
@@ -28,7 +23,7 @@ export class CaseFileCardiologist extends CaseFile {
     protected constructor(id: CaseFileId, bloodPressure: CaseFileBloodPressure, height: CaseFileHeight, weight: CaseFileWeight, heartRate: CaseFileHeartRate, personalBg: CaseFilePersonalBg, saturation: CaseFileSaturation, albumin: CaseFileAlbumin, cholesterol: CaseFileCholesterol) {
         super(id, bloodPressure, height, weight, heartRate, personalBg, saturation);
         this.cholesterol = cholesterol;
-        this.Albumin = albumin;
+        this.albumin = albumin;
         this.validate();
     }
 
@@ -43,21 +38,35 @@ export class CaseFileCardiologist extends CaseFile {
      * @param saturation Saturacion de oxigeno del paciente
      * @param albumin Albumina del paciente
      * @param cholesterol Colesterol del paciente */
-    public static create(id: CaseFileId, bloodPressure: CaseFileBloodPressure, height: CaseFileHeight, weight: CaseFileWeight, heartRate: CaseFileHeartRate, personalBg: CaseFilePersonalBg, saturation: CaseFileSaturation, albumin: CaseFileAlbumin, cholesterol: CaseFileCholesterol): CaseFileCardiologist {
-        return new CaseFileCardiologist(id, bloodPressure, height, weight, heartRate, personalBg, saturation, albumin, cholesterol);
+    public static create(id: CaseFileId, bloodPressure: CaseFileBloodPressure, height: CaseFileHeight, weight: CaseFileWeight, heartRate: CaseFileHeartRate, personalBg: CaseFilePersonalBg, saturation: CaseFileSaturation, albumin: any, cholesterol: any): CaseFileCardiologist {
+        return new CaseFileCardiologist(
+            id,
+            bloodPressure,
+            height,
+            weight,
+            heartRate,
+            personalBg,
+            saturation,
+            CaseFileAlbumin.create(
+                albumin,
+                CaseFileRange.create(0, 150)
+            ),
+            CaseFileCholesterol.create(
+                cholesterol,
+                CaseFileRange.create(50.5, 80.5)
+            )
+        );
     }
 
-    /**
-     * Valida el estado de la entidad. */
     protected validate(): void {
-        super.validate();
-
         if (this.Albumin == null || this.Albumin == undefined) { throw new Error("La albumina no puede ser nula/undefined"); }
-
         if (this.Cholesterol == null || this.Cholesterol == undefined) { throw new Error("El colesterol no puede ser nulo/undefined"); }
+        super.validate();
     }
 
-    updateCaseFile(data: any): void {
-        throw new Error("Method not implemented.");
+    updateCaseFileExtras(extras: any): void {
+        this.albumin = CaseFileAlbumin.create(extras['albumin'], this.albumin.rangeValue);
+        this.cholesterol = CaseFileCholesterol.create(extras['cholesterol'], this.cholesterol.rangeValue);
+        this.validate();
     }
 }

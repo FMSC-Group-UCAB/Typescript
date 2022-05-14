@@ -1,9 +1,18 @@
 import { Suscription } from "./domain/entities/suscription";
+import { SpecialtyType } from "./domain/enumerations/specialty-type.enum";
 import { SuscriptionCostType } from "./domain/enumerations/suscription-cost-type.enum";
 import { SuscriptionType } from "./domain/enumerations/suscription-type.enum";
+import { CasefileFactory } from "./domain/factories/casefile-factory";
 import { DomainEvent } from "./domain/observables/domain-event";
 import { Observable } from "./domain/observables/observable";
 import { Observer } from "./domain/observables/observer.interface";
+import { CaseFileBloodPressure } from "./domain/valueobjects/casefile/casefile-bloodPressure";
+import { CaseFileHeartRate } from "./domain/valueobjects/casefile/casefile-heart-rate";
+import { CaseFileHeight } from "./domain/valueobjects/casefile/casefile-height";
+import { CaseFileId } from "./domain/valueobjects/casefile/casefile-id";
+import { CaseFilePersonalBg } from "./domain/valueobjects/casefile/casefile-personal-bg";
+import { CaseFileSaturation } from "./domain/valueobjects/casefile/casefile-saturation";
+import { CaseFileWeight } from "./domain/valueobjects/casefile/casefile-weight";
 import { SuscriptionClosedAt } from "./domain/valueobjects/suscription/suscription-closed-at";
 import { SuscriptionCreatedAt } from "./domain/valueobjects/suscription/suscription-created-at";
 import { SuscriptionId } from "./domain/valueobjects/suscription/suscription-id";
@@ -62,7 +71,28 @@ async function main() {
         null
     );
 
-    console.log(suscription.Id.Value);
+    //console.log(suscription.Id.Value);
+
+    let casefile = CasefileFactory.fromSpecialty(
+        SpecialtyType.CARDIOLOGY,
+        CaseFileId.create(1),
+        CaseFileBloodPressure.create("Alta"),
+        CaseFileHeight.create(45.25),
+        CaseFileWeight.create(48.65),
+        CaseFileHeartRate.create(79.65),
+        CaseFilePersonalBg.create("Diabetes III"),
+        CaseFileSaturation.create(48.56),
+        {
+            albumin: 45.68,
+            cholesterol: 48.53
+        }
+    );
+
+    console.log(casefile);
+
+    casefile.updateCaseFile(casefile.BloodPressure, casefile.Height, casefile.Weight, casefile.HeartRate, CaseFilePersonalBg.create("Cambiado"), casefile.Saturation, { albumin: 90.15, cholesterol: 48.53 });
+
+    console.log(casefile);
 }
 
 

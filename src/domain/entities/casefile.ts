@@ -6,14 +6,9 @@ import { CaseFileId } from '../valueobjects/casefile/casefile-id';
 import { CaseFilePersonalBg } from '../valueobjects/casefile/casefile-personal-bg';
 import { CaseFileSaturation } from '../valueobjects/casefile/casefile-saturation';
 import { CaseFileWeight } from '../valueobjects/casefile/casefile-weight';
-import { CaseFileCardiologist } from './casefile-cardiologist';
-import { CaseFileCholesterol } from "../valueobjects/casefile/casefile-cholesterol";
-import { CaseFileAlbumin } from '../valueobjects/casefile/casefile-albumin';
-import { CaseFileType } from '../valueobjects/casefile/casefile-type';
 
 export abstract class CaseFile {
     private readonly id: CaseFileId;
-    protected abstract readonly type: CaseFileType;
     protected abstract readonly specialtyType: SpecialtyType;
 
     private bloodPressure: CaseFileBloodPressure;
@@ -23,17 +18,8 @@ export abstract class CaseFile {
     private personalBg: CaseFilePersonalBg;
     private saturation: CaseFileSaturation;
 
-    //Setters
-    set BloodPressure(value: CaseFileBloodPressure) { this.bloodPressure = value; }
-    set Height(value: CaseFileHeight) { this.height = value; }
-    set Weight(value: CaseFileWeight) { this.weight = value; }
-    set HeartRate(value: CaseFileHeartRate) { this.heartRate = value; }
-    set PersonalBg(value: CaseFilePersonalBg) { this.personalBg = value; }
-    set Saturation(value: CaseFileSaturation) { this.saturation = value; }
-
     //Getters
     get Id(): CaseFileId { return this.id; }
-    get Type(): CaseFileType { return this.type; };
     get SpecialtyType(): SpecialtyType { return this.specialtyType; };
     get BloodPressure(): CaseFileBloodPressure { return this.bloodPressure; }
     get Height(): CaseFileHeight { return this.height; }
@@ -50,7 +36,6 @@ export abstract class CaseFile {
         this.heartRate = heartRate;
         this.personalBg = personalBg;
         this.saturation = saturation;
-        this.validate();
     }
 
     /**
@@ -72,45 +57,27 @@ export abstract class CaseFile {
     }
 
     /**
-     * Patron Factory para generar un nuevo Casefile en función de la especialidad y el tipo.
-     * @param id Identificador de la historia medica
-     * @param type Tipo de casefile.
-     * @param specialtyType Especialidad del casefile.
+     * Método para actualizar los datos del casefile.
      * @param bloodPressure Presion arterial del paciente
      * @param height Altura del paciente
      * @param weight Peso del paciente
      * @param heartRate La frecuencia cardiaca del paciente
      * @param personalBg Antecedentes personales del paciente
      * @param saturation Saturacion de oxigeno del paciente
-     * @param extra Información extra necesaria para el tipo de casefile.
-     * @returns `Casefile` */
-    public static fromSpecialty(id: CaseFileId, type: CaseFileType, specialtyType: SpecialtyType, bloodPressure: CaseFileBloodPressure, height: CaseFileHeight, weight: CaseFileWeight, heartRate: CaseFileHeartRate, personalBg: CaseFilePersonalBg, saturation: CaseFileSaturation, extra: any): CaseFile {
-        switch (specialtyType) {
-            case SpecialtyType.CARDIOLOGY:
-                switch (type.Value) {
-                    case 0:
-                        return CaseFileCardiologist.create(id, bloodPressure, height, weight, heartRate, personalBg, saturation, CaseFileAlbumin.create(extra['albumin']), CaseFileCholesterol.create(extra['cholesterol']));
-                    default:
-                        throw new Error('Type inválida.');
-                }
-            case SpecialtyType.OPHTHALMOLOGY:
-                switch (type.Value) {
-                    case 0:
-                        return null;
-                    default:
-                        throw new Error('Type inválida.');
-                }
-            case SpecialtyType.OTOLARYNGOLOGY:
-                switch (type.Value) {
-                    case 0:
-                        return null;
-                    default:
-                        throw new Error('Type inválida.');
-                }
-            default:
-                throw new Error('Especialidad inválida.');
-        }
+     * @param extra Información extra necesaria para el tipo de casefile.*/
+    public updateCaseFile(bloodPressure: CaseFileBloodPressure, height: CaseFileHeight, weight: CaseFileWeight, heartRate: CaseFileHeartRate, personalBg: CaseFilePersonalBg, saturation: CaseFileSaturation, extras: any): void {
+        this.bloodPressure = bloodPressure;
+        this.height = height;
+        this.weight = weight;
+        this.heartRate = heartRate;
+        this.personalBg = personalBg;
+        this.saturation = saturation;
+
+        this.updateCaseFileExtras(extras);
     }
 
-    abstract updateCaseFile(data: any): void;
+    /**
+     * Método para actualizar datos extras de cada casefile.
+     * @param extras Información extra necesaria para el tipo de casefile.*/
+    protected abstract updateCaseFileExtras(extras: any): void;
 }
