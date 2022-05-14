@@ -6,7 +6,7 @@ export class PatientPhoneNumber implements IValueObject<PatientPhoneNumber> {
     private constructor(private readonly phoneNumber: string) { }
 
     //Getter
-    get ValuePhoneNumber() { return this.phoneNumber; }
+    get value() { return this.phoneNumber; }
 
 
     equals = (other: PatientPhoneNumber): boolean => {
