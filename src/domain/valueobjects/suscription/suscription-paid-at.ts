@@ -1,4 +1,4 @@
-import { IValueObject } from "../interfaces/value-object.interface";
+import { IValueObject } from "../../interfaces/value-object.interface";
 
 /** SuscriptionPaidAt: Value Object para las fechas de pago de las suscripciones.*/
 export class SuscriptionPaidAt implements IValueObject<SuscriptionPaidAt>{

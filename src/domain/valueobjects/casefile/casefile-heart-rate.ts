@@ -1,8 +1,10 @@
-import {IValueObject} from '../interfaces/value-object.interface';
+import { IValueObject } from '../../interfaces/value-object.interface';
 
 export class CaseFileHeartRate implements IValueObject<CaseFileHeartRate> {
+    private constructor(private readonly heartRate: number) { }
 
-    private constructor(private readonly heartRate: number) {}
+    //Getter
+    get HeartRate(): number { return this.heartRate; }
 
     equals(other: CaseFileHeartRate): boolean {
         return this.heartRate == other.heartRate;
@@ -12,14 +14,10 @@ export class CaseFileHeartRate implements IValueObject<CaseFileHeartRate> {
      * Patron Factory.
      * @param heartRate La frecuencia cardiaca del paciente
      * @returns `CaseFileHeartRate` */
-
     static create(heartRate: number): CaseFileHeartRate {
-        if ( heartRate == null || heartRate == undefined ) {
+        if (heartRate == null || heartRate == undefined) {
             throw new Error("La presion no puede ser undefined/null.");
         }
         return new CaseFileHeartRate(heartRate);
-    } 
-
-    get HeartRate(): number { return this.heartRate; }
-    
+    }
 }

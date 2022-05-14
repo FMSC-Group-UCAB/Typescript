@@ -1,4 +1,4 @@
-import { IValueObject } from "../interfaces/value-object.interface";
+import { IValueObject } from "../../interfaces/value-object.interface";
 
 /** SuscriptionId: Es el Value Object del identificador de las suscripciones.*/
 export class SuscriptionId implements IValueObject<SuscriptionId>{

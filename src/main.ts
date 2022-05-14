@@ -4,10 +4,10 @@ import { SuscriptionType } from "./domain/enumerations/suscription-type.enum";
 import { DomainEvent } from "./domain/observables/domain-event";
 import { Observable } from "./domain/observables/observable";
 import { Observer } from "./domain/observables/observer.interface";
-import { SuscriptionClosedAt } from "./domain/valueobjects/suscription-closed-at";
-import { SuscriptionCreatedAt } from "./domain/valueobjects/suscription-created-at";
-import { SuscriptionId } from "./domain/valueobjects/suscription-id";
-import { SuscriptionPaidAt } from "./domain/valueobjects/suscription-paid-at";
+import { SuscriptionClosedAt } from "./domain/valueobjects/suscription/suscription-closed-at";
+import { SuscriptionCreatedAt } from "./domain/valueobjects/suscription/suscription-created-at";
+import { SuscriptionId } from "./domain/valueobjects/suscription/suscription-id";
+import { SuscriptionPaidAt } from "./domain/valueobjects/suscription/suscription-paid-at";
 
 export class NuevoObservable extends Observable {
     async run() {

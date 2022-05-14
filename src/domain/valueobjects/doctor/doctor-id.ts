@@ -1,7 +1,6 @@
-import {IValueObject} from '../interfaces/value-object.interface';
+import { IValueObject } from '../../interfaces/value-object.interface';
 
 export class DoctorId implements IValueObject<DoctorId> {
-
     private constructor(private readonly id: number) { }
 
     get Value() { return this.id; }
@@ -13,10 +12,9 @@ export class DoctorId implements IValueObject<DoctorId> {
     /**
      * Patron Factory
      * @param id nombre del doctor
-     * @returns `DoctorId`
-     */
+     * @returns `DoctorId` */
     public static create(id: number): DoctorId {
-        if (id == null || id == undefined || id == 0){
+        if (id == null || id == undefined || id == 0) {
             throw new Error('El id del doctor no puede ser null/undefined.');
         }
         return new DoctorId(id);

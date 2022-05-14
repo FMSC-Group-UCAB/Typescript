@@ -1,9 +1,9 @@
 import { SuscriptionCostType } from "../enumerations/suscription-cost-type.enum";
 import { SuscriptionType } from "../enumerations/suscription-type.enum";
-import { SuscriptionClosedAt } from "../valueobjects/suscription-closed-at";
-import { SuscriptionCreatedAt } from "../valueobjects/suscription-created-at";
-import { SuscriptionId } from "../valueobjects/suscription-id";
-import { SuscriptionPaidAt } from "../valueobjects/suscription-paid-at";
+import { SuscriptionClosedAt } from "../valueobjects/suscription/suscription-closed-at";
+import { SuscriptionCreatedAt } from "../valueobjects/suscription/suscription-created-at";
+import { SuscriptionId } from "../valueobjects/suscription/suscription-id";
+import { SuscriptionPaidAt } from "../valueobjects/suscription/suscription-paid-at";
 
 /** Suscription: Es una clase concreta utilizada para el manejo de las suscripcionones del paciente.*/
 export class Suscription {
