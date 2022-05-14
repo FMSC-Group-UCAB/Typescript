@@ -1,4 +1,4 @@
-import { IValueObject } from "../interfaces/value-object.interface";
+import { IValueObject } from "../../interfaces/value-object.interface";
 
 /** SuscriptionCreatedAt: Value Object para las fechas de creación de las suscripciones.*/
 export class SuscriptionCreatedAt implements IValueObject<SuscriptionCreatedAt>{
