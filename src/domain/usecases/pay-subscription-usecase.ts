@@ -13,31 +13,31 @@ export class PaySubscriptionUsecase extends Observable {
         super();
     }
 
-    public async paySuscription(suscription: Subscription) {
-        if (suscription == null || suscription == undefined) {
+    public async paySuscription(subscription: Subscription) {
+        if (subscription == null || subscription == undefined) {
             throw Error("Al pagar una suscripción esta no puede ser null/undefined.");
         }
 
-        if (suscription.ClosedAt) {
+        if (subscription.ClosedAt) {
             ClosedSubscriptionException.create();
         }
 
         //TODO: Validar que este vencida.
 
-        const results = await this.payMethod.pay(suscription.Cost);
+        const results = await this.payMethod.pay(subscription.Cost);
 
         if (!results) {
             throw new Error("No se pudo realizar el pago.");
         }
 
-        suscription.update(suscription.Type, SuscriptionCostType.PREMIUM, SubscriptionPaidAt.create(new Date()), null);
+        subscription.update(subscription.Type, SuscriptionCostType.PREMIUM, SubscriptionPaidAt.create(new Date()), null);
 
         this.events.push(DomainEvent.create(
             "Pago de Suscripción",
             {
-                owner: suscription.Patient.FirstName.value + " " + suscription.Patient.LastName.value,
-                id: "Suscripción #" + suscription.Id.value,
-                cost: "$" + suscription.Cost,
+                owner: subscription.Patient.FirstName.value + " " + subscription.Patient.LastName.value,
+                id: "Suscripción #" + subscription.Id.value,
+                cost: "$" + subscription.Cost,
             }
         ));
 
