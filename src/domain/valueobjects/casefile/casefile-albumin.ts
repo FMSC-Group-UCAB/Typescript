@@ -8,7 +8,7 @@ export class CaseFileAlbumin implements IValueObject<CaseFileAlbumin> {
     ) { }
 
     //getter
-    get albuminValue() { return this.albumin; }
+    get value() { return this.albumin; }
     get rangeValue() { return this.range; }
 
     equals(other: CaseFileAlbumin): boolean {

@@ -4,7 +4,7 @@ export class CaseFileId implements IValueObject<CaseFileId> {
     private constructor(private readonly id: number) { }
 
     //Getter
-    get Id(): number { return this.id; }
+    get value(): number { return this.id; }
 
     equals(other: CaseFileId): boolean {
         return this.id == other.id;

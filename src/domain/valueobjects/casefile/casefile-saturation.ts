@@ -4,7 +4,7 @@ export class CaseFileSaturation implements IValueObject<CaseFileSaturation> {
     private constructor(private readonly saturation: number) { }
 
     //getter
-    get Saturation(): number { return this.saturation; }
+    get value(): number { return this.saturation; }
 
     equals(other: CaseFileSaturation): boolean {
         return this.saturation == other.saturation;

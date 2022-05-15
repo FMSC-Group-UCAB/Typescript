@@ -35,8 +35,8 @@ export class PaySubscriptionUsecase extends Observable {
         this.events.push(DomainEvent.create(
             "Pago de Suscripción",
             {
-                owner: suscription.Patient.FirstName.ValueFirstName + " " + suscription.Patient.LastName.ValueLastName,
-                id: "Suscripción #" + suscription.Id.Value,
+                owner: suscription.Patient.FirstName.value + " " + suscription.Patient.LastName.value,
+                id: "Suscripción #" + suscription.Id.value,
                 cost: "$" + suscription.Cost,
             }
         ));

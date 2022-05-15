@@ -125,7 +125,7 @@ async function main() {
         }
     );
 
-    console.log(suscription.PaidAt.Value);
+    console.log(suscription.PaidAt.value);
 
     console.log(".............................................................");
 
@@ -157,6 +157,8 @@ async function main() {
         PatientPhoneNumber.create("+58 (123)153-1532"),
         PatientOccupation.create("Trabajador"),
         HoldType.NONE);
+
+    console.log(suscription.PaidAt.value)
 }
 
 

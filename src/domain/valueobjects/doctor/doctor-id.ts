@@ -1,10 +1,9 @@
 import {IValueObject} from '../../interfaces/value-object.interface';
 
 export class DoctorId implements IValueObject<DoctorId> {
-
     private constructor(private readonly id: number) { }
 
-    get ValueId() { return this.id; }
+    get value() { return this.id; }
 
     equals(other: DoctorId): boolean {
         return this.id == other.id;

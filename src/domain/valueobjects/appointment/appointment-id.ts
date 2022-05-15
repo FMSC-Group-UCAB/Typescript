@@ -2,11 +2,10 @@ import { IValueObject } from "src/domain/interfaces/value-object.interface";
 
 /**AppointmentId: Es un Value Object que representa el identificador de una cita. */
 export class AppointmentId implements IValueObject<AppointmentId> {
-    
     private constructor (private readonly id: number) { }
 
     //Getter
-    get ValueId() { return this.id; }
+    get value() { return this.id; }
 
     
     equals(other: AppointmentId): boolean {

@@ -4,7 +4,7 @@ export class CaseFileHeartRate implements IValueObject<CaseFileHeartRate> {
     private constructor(private readonly heartRate: number) { }
 
     //Getter
-    get HeartRate(): number { return this.heartRate; }
+    get value(): number { return this.heartRate; }
 
     equals(other: CaseFileHeartRate): boolean {
         return this.heartRate == other.heartRate;
