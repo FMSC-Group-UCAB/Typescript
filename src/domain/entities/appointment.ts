@@ -18,7 +18,7 @@ export class Appointment{
     get Specialty(){ return this.specialty; }
     
     
-    ///Constructor de la clase
+    //Constructor de la clase
     private constructor(
         private readonly id: AppointmentId,
         private status: StatusType,
@@ -39,8 +39,27 @@ export class Appointment{
      * @param feedback Feedback de la cita.
      * @param specialty Especialidad de la cita.
      * @returns `Appointment`*/
-    public static create(id: AppointmentId, status: StatusType, date: AppointmentDate, type: AppointmentType, feedback: AppointmentFeedback, specialty: SpecialtyType): Appointment{
+    public static create(id: AppointmentId, status: StatusType, date: AppointmentDate, type: AppointmentType, feedback: AppointmentFeedback, specialty: SpecialtyType) {
         return new Appointment(id, status, date, type, feedback, specialty);
+    }
+
+
+    //Métodos de la clase
+
+    /**Permite actualizar los datos de la cita
+     * @param status Estado de la cita.
+     * @param date Fecha de la cita.
+     * @param type Tipo de cita.
+     * @param feedback Feedback de la cita.
+     * @param specialty Especialidad de la cita.
+     */
+    public update(status: StatusType, date: AppointmentDate, type: AppointmentType, feedback: AppointmentFeedback): void {
+        this.status = status;
+        this.date = date;
+        this.type = type;
+        this.feedback = feedback;
+
+        this.validate();
     }
 
     /** Valida los atributos de la entidad.*/
