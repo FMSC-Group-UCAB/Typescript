@@ -9,6 +9,18 @@ import { PatientPhoneNumber } from "../valueobjects/patient/patient-phone-number
 /** Patient: Es una clase concreta utilizada para el manejo de los pacientes.*/
 export class Patient {
 
+    
+    //Getters
+    get Id() { return this.id; }
+    get FirstName() { return this.firstName; }
+    get LastName() { return this.lastName; }
+    get BirthDate() { return this.birthDate; }
+    get Email() { return this.email; }
+    get Phone() { return this.phone; }
+    get Occupation() { return this.occupation; }
+    
+
+    /* Constructor de la clase. */
     private constructor(
         private readonly id: PatientId,
         private firstName: PatientFirstName,
@@ -21,25 +33,7 @@ export class Patient {
         this.validate();
     }
 
-    //Getters
-    get Id() { return this.id; }
-    get FirstName() { return this.firstName; }
-    get LastName() { return this.lastName; }
-    get BirthDate() { return this.birthDate; }
-    get Email() { return this.email; }
-    get Phone() { return this.phone; }
-    get Occupation() { return this.occupation; }
-
-
-    //Setters
-    set FirstName(firstName: PatientFirstName) { this.firstName = firstName; }
-    set LastName(lastName: PatientLastName) { this.lastName = lastName; }
-    set BirthDate(birthDate: PatientBirthDate) { this.birthDate = birthDate; }
-    set Email(email: PatientEmail) { this.email = email; }
-    set Phone(phone: PatientPhoneNumber) { this.phone = phone; }
-    set Occupation(occupation: PatientOccupation) { this.occupation = occupation; }
     
-
     /** Patron Factory.
      * @param id Identificador del paciente.
      * @param firstName Nombre del paciente.

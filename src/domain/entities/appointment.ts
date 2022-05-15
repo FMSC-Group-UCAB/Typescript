@@ -8,6 +8,17 @@ import { AppointmentId } from "../valueobjects/appointment/appointment-id";
 /** Appointment: Es una clase concreta que representa una cita entre un paciente y un doctor. */
 export class Appointment{
 
+    
+    //Getters
+    get Id(){ return this.id; }
+    get Status(){ return this.status; }
+    get Date(){ return this.date; }
+    get Type(){ return this.type; }
+    get Feedback(){ return this.feedback; }
+    get Specialty(){ return this.specialty; }
+    
+    
+    ///Constructor de la clase
     private constructor(
         private readonly id: AppointmentId,
         private status: StatusType,
@@ -18,23 +29,7 @@ export class Appointment{
     ){
         this.validate();
     }
-
-    //Getters
-    get Id(){ return this.id; }
-    get Status(){ return this.status; }
-    get Date(){ return this.date; }
-    get Type(){ return this.type; }
-    get Feedback(){ return this.feedback; }
-    get Specialty(){ return this.specialty; }
-
-
-    //Setters
-    set Status(status: StatusType){ this.status = status; }
-    set Date(date: AppointmentDate){ this.date = date; }
-    set Type(type: AppointmentType){ this.type = type; }
-    set Feedback(feedback: AppointmentFeedback){ this.feedback = feedback; }
-    set Specialty(specialty: SpecialtyType){ this.specialty = specialty; }
-
+    
 
     /** Patron Factory.
      * @param id Identificador del cita.
