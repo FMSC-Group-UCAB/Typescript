@@ -20,6 +20,7 @@ export class Doctor {
         this.validate();
     }
 
+    // getters
         get Id(){ return this.id; }
         get FirstName(){ return this.firstName; }
         get LastName(){ return this.lastName; }
@@ -27,11 +28,6 @@ export class Doctor {
         get Location(){ return this.location; }
         get HoldType(){ return this.holdType; }
 
-        set FirstName( firstName: DoctorFirstName ) { this.firstName = firstName }
-        set LastName( lastName: DoctorLastName ) { this.lastName = lastName }
-        set Specialty( specialty: Array<SpecialtyType> ) { this.specialty = specialty }
-        set Location ( location: DoctorLocation ) { this.location = location }
-        set HoldType ( holdType: HoldType ) { this.holdType = holdType }
 
 
         /**
@@ -52,6 +48,22 @@ export class Doctor {
              holdType: HoldType): Doctor {
                  return new Doctor(id, firstName, lastName,specialty,location,holdType);
              }
+
+
+        public update(
+            firstName: DoctorFirstName, 
+            lastName: DoctorLastName, 
+            specialty: Array<SpecialtyType>, 
+            location: DoctorLocation, 
+            holdType: HoldType){
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this.specialty = specialty;
+                this.location = location;
+                this.holdType = holdType;
+
+                this.validate();
+            }
 
 
              private validate():void {
