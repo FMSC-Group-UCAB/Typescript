@@ -2,18 +2,15 @@ import { IValueObject } from "src/domain/interfaces/value-object.interface";
 
 /** PatientLastName: Es el Value Object del apellido del paciente.*/
 export class PatientLastName implements IValueObject<PatientLastName> {
-    
     private constructor(private readonly lastName: string) { }
 
     //Getter
     get ValueLastName() { return this.lastName; }
 
-
     equals(other: PatientLastName): boolean {
         return this.lastName == other.lastName;
     }
 
-    
     /**Patron Factory.
      * @param lastName Apellido del paciente.
      * @returns `PatientLastName`.*/

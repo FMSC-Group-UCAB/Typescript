@@ -6,10 +6,14 @@ import { CaseFileId } from '../valueobjects/casefile/casefile-id';
 import { CaseFilePersonalBg } from '../valueobjects/casefile/casefile-personal-bg';
 import { CaseFileSaturation } from '../valueobjects/casefile/casefile-saturation';
 import { CaseFileWeight } from '../valueobjects/casefile/casefile-weight';
+import { Doctor } from './doctor';
+import { Patient } from './patient';
 
 export abstract class CaseFile {
     private readonly id: CaseFileId;
     protected abstract readonly specialtyType: SpecialtyType;
+    private readonly patient: Patient;
+    private readonly doctor: Doctor;
 
     private bloodPressure: CaseFileBloodPressure;
     private height: CaseFileHeight;
@@ -20,6 +24,8 @@ export abstract class CaseFile {
 
     //Getters
     get Id(): CaseFileId { return this.id; }
+    get Patient() { return this.patient }
+    get Doctor() { return this.doctor }
     get SpecialtyType(): SpecialtyType { return this.specialtyType; };
     get BloodPressure(): CaseFileBloodPressure { return this.bloodPressure; }
     get Height(): CaseFileHeight { return this.height; }
@@ -28,8 +34,10 @@ export abstract class CaseFile {
     get PersonalBg(): CaseFilePersonalBg { return this.personalBg; }
     get Saturation(): CaseFileSaturation { return this.saturation; }
 
-    protected constructor(id: CaseFileId, bloodPressure: CaseFileBloodPressure, height: CaseFileHeight, weight: CaseFileWeight, heartRate: CaseFileHeartRate, personalBg: CaseFilePersonalBg, saturation: CaseFileSaturation) {
+    protected constructor(id: CaseFileId, patient: Patient, doctor: Doctor, bloodPressure: CaseFileBloodPressure, height: CaseFileHeight, weight: CaseFileWeight, heartRate: CaseFileHeartRate, personalBg: CaseFilePersonalBg, saturation: CaseFileSaturation) {
         this.id = id;
+        this.patient = patient;
+        this.doctor = doctor;
         this.bloodPressure = bloodPressure;
         this.height = height;
         this.weight = weight;
@@ -42,6 +50,10 @@ export abstract class CaseFile {
      * Valida el estado de la entidad.*/
     protected validate(): void {
         if (this.Id == null || this.Id == undefined) { throw new Error("El identificador de la historia medica no puede ser nulo/undefined"); }
+
+        if (this.patient == null || this.patient == undefined) { throw new Error("El paciente asociado a la cita no puede ser null/undefined."); }
+
+        if (this.doctor == null || this.doctor == undefined) { throw new Error("El doctor asociado a la cita no puede ser null/undefined."); }
 
         if (this.BloodPressure == null || this.BloodPressure == undefined) { throw new Error("La presion arterial no puede ser nula/undefined"); }
 

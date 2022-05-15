@@ -7,12 +7,10 @@ export class PatientFirstName implements IValueObject<PatientFirstName> {
     //Getter
     get ValueFirstName() { return this.firstName; }
 
-
     equals(other: PatientFirstName): boolean {
         return this.firstName == other.firstName;
     }
 
-    
     /**Patron Factory.
      * @param firstName Nombre del paciente.
      * @returns `PatientFirstName`.*/

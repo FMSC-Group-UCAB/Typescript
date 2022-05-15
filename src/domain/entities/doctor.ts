@@ -6,8 +6,7 @@ import { DoctorLocation } from "../valueobjects/doctor/doctor-location";
 import { HoldType } from "../enumerations/hold-type.enum";
 
 export class Doctor {
-
-    constructor(
+    private constructor(
         private readonly id: DoctorId,
         private firstName: DoctorFirstName,
         private lastName: DoctorLastName,
@@ -76,5 +75,4 @@ export class Doctor {
             throw new Error("La retencion del doctor no puede ser null/undefined");
         }
     }
-
 }

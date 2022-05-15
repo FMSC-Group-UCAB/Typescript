@@ -4,11 +4,13 @@ import { SuscriptionClosedAt } from "../valueobjects/suscription/suscription-clo
 import { SuscriptionCreatedAt } from "../valueobjects/suscription/suscription-created-at";
 import { SuscriptionId } from "../valueobjects/suscription/suscription-id";
 import { SuscriptionPaidAt } from "../valueobjects/suscription/suscription-paid-at";
+import { Patient } from "./patient";
 
 /** Suscription: Es una clase concreta utilizada para el manejo de las suscripcionones del paciente.*/
 export class Suscription {
     private constructor(
         private readonly id: SuscriptionId,
+        private readonly patient: Patient,
         private type: SuscriptionType,
         private cost: SuscriptionCostType,
         private createdAt: SuscriptionCreatedAt,
@@ -25,18 +27,20 @@ export class Suscription {
     get CreatedAt() { return this.createdAt; }
     get PaidAt() { return this.paidAt; }
     get ClosedAt() { return this.closedAt; }
+    get Patient() { return this.patient; }
 
     /**
      * Patron Factory.
      * @param id Identificador de la suscripción.
+     * @param patient Paciente asociado a la suscripción.
      * @param type Tipo de suscripción.
      * @param cost Tipo de costo de la suscripción.
      * @param createdAt Fecha de creación de la suscripción.
      * @param paidAt Fecha de pago de la suscripción.
      * @param closedAt Fecha de cierre de la suscripción.
      * @returns `Suscription`*/
-    public static create(id: SuscriptionId, type: SuscriptionType, cost: SuscriptionCostType, createdAt: SuscriptionCreatedAt, paidAt: SuscriptionPaidAt, closedAt: SuscriptionClosedAt): Suscription {
-        return new Suscription(id, type, cost, createdAt, paidAt, closedAt);
+    public static create(id: SuscriptionId, patient: Patient, type: SuscriptionType, cost: SuscriptionCostType, createdAt: SuscriptionCreatedAt, paidAt: SuscriptionPaidAt, closedAt: SuscriptionClosedAt): Suscription {
+        return new Suscription(id, patient, type, cost, createdAt, paidAt, closedAt);
     }
 
     /**

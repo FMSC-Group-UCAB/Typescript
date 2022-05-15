@@ -8,7 +8,6 @@ import { PatientPhoneNumber } from "../valueobjects/patient/patient-phone-number
 
 /** Patient: Es una clase concreta utilizada para el manejo de los pacientes.*/
 export class Patient {
-
     private constructor(
         private readonly id: PatientId,
         private firstName: PatientFirstName,
@@ -91,5 +90,4 @@ export class Patient {
             throw new Error("La ocupación del paciente no puede ser null/undefined.");
         }
     }
-
 }

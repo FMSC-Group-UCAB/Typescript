@@ -10,6 +10,8 @@ import { CaseFileRange } from "../valueobjects/casefile/casefile-range";
 import { CaseFileSaturation } from "../valueobjects/casefile/casefile-saturation";
 import { CaseFileWeight } from "../valueobjects/casefile/casefile-weight";
 import { CaseFile } from "./casefile";
+import { Doctor } from "./doctor";
+import { Patient } from "./patient";
 
 export class CaseFileCardiologist extends CaseFile {
     protected readonly specialtyType: SpecialtyType = SpecialtyType.CARDIOLOGY;
@@ -20,8 +22,8 @@ export class CaseFileCardiologist extends CaseFile {
     get Albumin(): CaseFileAlbumin { return this.albumin; }
     get Cholesterol(): CaseFileCholesterol { return this.cholesterol; }
 
-    protected constructor(id: CaseFileId, bloodPressure: CaseFileBloodPressure, height: CaseFileHeight, weight: CaseFileWeight, heartRate: CaseFileHeartRate, personalBg: CaseFilePersonalBg, saturation: CaseFileSaturation, albumin: CaseFileAlbumin, cholesterol: CaseFileCholesterol) {
-        super(id, bloodPressure, height, weight, heartRate, personalBg, saturation);
+    protected constructor(id: CaseFileId, patient: Patient, doctor: Doctor, bloodPressure: CaseFileBloodPressure, height: CaseFileHeight, weight: CaseFileWeight, heartRate: CaseFileHeartRate, personalBg: CaseFilePersonalBg, saturation: CaseFileSaturation, albumin: CaseFileAlbumin, cholesterol: CaseFileCholesterol) {
+        super(id, patient, doctor, bloodPressure, height, weight, heartRate, personalBg, saturation);
         this.cholesterol = cholesterol;
         this.albumin = albumin;
         this.validate();
@@ -30,6 +32,8 @@ export class CaseFileCardiologist extends CaseFile {
     /**
      * Patron Factory.
      * @param id Identificador de la historia medica
+     * @param patient Paciente asociado al expediente
+     * @param doctor Doctor asociado al expediente
      * @param bloodPressure Presion arterial del paciente
      * @param height Altura del paciente
      * @param weight Peso del paciente
@@ -38,9 +42,11 @@ export class CaseFileCardiologist extends CaseFile {
      * @param saturation Saturacion de oxigeno del paciente
      * @param albumin Albumina del paciente
      * @param cholesterol Colesterol del paciente */
-    public static create(id: CaseFileId, bloodPressure: CaseFileBloodPressure, height: CaseFileHeight, weight: CaseFileWeight, heartRate: CaseFileHeartRate, personalBg: CaseFilePersonalBg, saturation: CaseFileSaturation, albumin: any, cholesterol: any): CaseFileCardiologist {
+    public static create(id: CaseFileId, patient: Patient, doctor: Doctor, bloodPressure: CaseFileBloodPressure, height: CaseFileHeight, weight: CaseFileWeight, heartRate: CaseFileHeartRate, personalBg: CaseFilePersonalBg, saturation: CaseFileSaturation, albumin: any, cholesterol: any): CaseFileCardiologist {
         return new CaseFileCardiologist(
             id,
+            patient,
+            doctor,
             bloodPressure,
             height,
             weight,

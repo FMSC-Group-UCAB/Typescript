@@ -1,5 +1,7 @@
 import { CaseFile } from "../entities/casefile";
 import { CaseFileCardiologist } from "../entities/casefile-cardiologist";
+import { Doctor } from "../entities/doctor";
+import { Patient } from "../entities/patient";
 import { SpecialtyType } from "../enumerations/specialty-type.enum";
 import { CaseFileBloodPressure } from "../valueobjects/casefile/casefile-bloodPressure";
 import { CaseFileHeartRate } from "../valueobjects/casefile/casefile-heart-rate";
@@ -14,7 +16,9 @@ import { CaseFileWeight } from "../valueobjects/casefile/casefile-weight";
 export class CasefileFactory {
     /**
      * Patron Factory para generar un nuevo Casefile en función de la especialidad y el tipo.
-     * @param id Identificador de la historia medica
+     * @param id Identificador de la historia medica.
+     * @param patient Paciente asociado al expediente.
+     * @param doctor Doctor asociado al expediente.
      * @param specialtyType Especialidad del casefile.
      * @param bloodPressure Presion arterial del paciente
      * @param height Altura del paciente
@@ -24,10 +28,10 @@ export class CasefileFactory {
      * @param saturation Saturacion de oxigeno del paciente
      * @param extra Información extra necesaria para el tipo de casefile.
      * @returns `Casefile` */
-    public static fromSpecialty(specialtyType: SpecialtyType, id: CaseFileId, bloodPressure: CaseFileBloodPressure, height: CaseFileHeight, weight: CaseFileWeight, heartRate: CaseFileHeartRate, personalBg: CaseFilePersonalBg, saturation: CaseFileSaturation, extra: any): CaseFile {
+    public static fromSpecialty(specialtyType: SpecialtyType, id: CaseFileId, patient: Patient, doctor: Doctor, bloodPressure: CaseFileBloodPressure, height: CaseFileHeight, weight: CaseFileWeight, heartRate: CaseFileHeartRate, personalBg: CaseFilePersonalBg, saturation: CaseFileSaturation, extra: any): CaseFile {
         switch (specialtyType) {
             case SpecialtyType.CARDIOLOGY:
-                return CaseFileCardiologist.create(id, bloodPressure, height, weight, heartRate, personalBg, saturation, extra['albumin'], extra['cholesterol']);
+                return CaseFileCardiologist.create(id, patient, doctor, bloodPressure, height, weight, heartRate, personalBg, saturation, extra['albumin'], extra['cholesterol']);
             case SpecialtyType.OPHTHALMOLOGY:
                 return null;
             case SpecialtyType.OTOLARYNGOLOGY:
