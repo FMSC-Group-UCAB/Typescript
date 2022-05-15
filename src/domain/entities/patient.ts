@@ -5,6 +5,7 @@ import { PatientId } from "../valueobjects/patient/patient-id";
 import { PatientLastName } from "../valueobjects/patient/patient-last-name";
 import { PatientOccupation } from "../valueobjects/patient/patient-occupation";
 import { PatientPhoneNumber } from "../valueobjects/patient/patient-phone-number";
+import { HoldType } from "../enumerations/hold-type.enum";
 
 /** Patient: Es una clase concreta utilizada para el manejo de los pacientes.*/
 export class Patient {
@@ -16,6 +17,7 @@ export class Patient {
         private email: PatientEmail,
         private phone: PatientPhoneNumber,
         private occupation: PatientOccupation,
+        private holdType: HoldType
     ) {
         this.validate();
     }
@@ -28,6 +30,7 @@ export class Patient {
     get Email() { return this.email; }
     get Phone() { return this.phone; }
     get Occupation() { return this.occupation; }
+    get HoldType() { return this.holdType }
 
     /** Patron Factory.
      * @param id Identificador del paciente.
@@ -37,9 +40,24 @@ export class Patient {
      * @param email Correo electrónico del paciente.
      * @param phone Número de teléfono del paciente.
      * @param occupation Ocupación del paciente.
+     * @param holdType retencion del paciente.
      * @returns `Patient`*/
-    public static create(id: PatientId, firstName: PatientFirstName, lastName: PatientLastName, birthDate: PatientBirthDate, email: PatientEmail, phone: PatientPhoneNumber, occupation: PatientOccupation): Patient {
-        return new Patient(id, firstName, lastName, birthDate, email, phone, occupation);
+    public static create(id: PatientId, 
+        firstName: PatientFirstName, 
+        lastName: PatientLastName, 
+        birthDate: PatientBirthDate, 
+        email: PatientEmail, 
+        phone: PatientPhoneNumber, 
+        occupation: PatientOccupation,
+        holdType: HoldType): Patient {
+        return new Patient(id, 
+            firstName, 
+            lastName, 
+            birthDate, 
+            email, 
+            phone, 
+            occupation,
+            holdType);
     }
 
     /**
@@ -49,14 +67,22 @@ export class Patient {
      * @param birthDate Fecha de nacimiento del paciente.
      * @param email Correo electrónico del paciente.
      * @param phone Número de teléfono del paciente.
+     * @param holdType retencion del paciente.
      * @param occupation Ocupación del paciente. */
-    public update(firstName: PatientFirstName, lastName: PatientLastName, birthDate: PatientBirthDate, email: PatientEmail, phone: PatientPhoneNumber, occupation: PatientOccupation) {
+    public update(firstName: PatientFirstName, 
+        lastName: PatientLastName, 
+        birthDate: PatientBirthDate, 
+        email: PatientEmail, 
+        phone: PatientPhoneNumber, 
+        occupation: PatientOccupation,
+        holdType: HoldType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.email = email;
         this.phone = phone;
         this.occupation = occupation;
+        this.holdType = holdType;
         this.validate();
     }
 
@@ -88,6 +114,9 @@ export class Patient {
 
         if (this.occupation == null || this.occupation == undefined) {
             throw new Error("La ocupación del paciente no puede ser null/undefined.");
+        }
+        if (this.holdType == null || this.holdType == undefined) {
+            throw new Error("La retencion del paciente no puede ser null/undefined.");
         }
     }
 }
