@@ -41,6 +41,7 @@ import { RegisterPatientUseCase } from "./domain/usecases/register-patient-useca
 import { RequestAppointmentUseCase } from "./domain/usecases/request-appointment-usecase";
 import { RegisterSubscriptionUseCase } from "./domain/usecases/register-subscription-usecase";
 
+
 export class NuevoObservador implements Observer {
     raise(events: DomainEvent[]) {
         events.forEach(event => {
@@ -169,7 +170,8 @@ async function main() {
 
     requestAppointmentUseCase.add(observador);
 
-    await requestAppointmentUseCase.requestAppointment(
+
+    requestAppointmentUseCase.requestAppointment(
             patient,
             doctor,
             AppointmentDate.create(new Date()),

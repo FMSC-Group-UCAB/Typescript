@@ -10,6 +10,7 @@ import { Observable } from "../observables/observable";
 import { AppointmentDate } from "../valueobjects/appointment/appointment-date";
 import { AppointmentId } from "../valueobjects/appointment/appointment-id";
 
+/** RequestAppointmentUseCase: Caso de uso para solicitar una cita */
 export class RequestAppointmentUseCase extends Observable{
     private events: DomainEvent[] = [];
     private appointment: Appointment;
@@ -23,19 +24,21 @@ export class RequestAppointmentUseCase extends Observable{
      * @param appointmentType Tipo o modalidad de la cita.
      * @use holdType Tipo de hold que pueda tener un paciente.
      * @returns `Appointment` */
-    public async requestAppointment(patient: Patient, doctor: Doctor, date: AppointmentDate, appointmentType: AppointmentType, specialty: SpecialtyType){
+    public requestAppointment(patient: Patient, doctor: Doctor, date: AppointmentDate, appointmentType: AppointmentType, specialty: SpecialtyType){
+
     
         if((patient == null || patient == undefined) || (doctor == null || doctor == undefined)){
             throw Error("El paciente y el doctor no pueden ser null/undefined.");
         }
 
-        //Si tiene un hold por mal uso de la aplicación 
-        if(patient.HoldType == HoldType.BADUSE) {
+        //Si el paciente tiene un hold por mal uso de la aplicación 
+        if(patient.HoldType == HoldType.BADUSE || doctor.HoldType == HoldType.BADUSE) {
            throw SystemBlockedException.create();
         }
 
-        //Si tiene un hold por no tener suscripción activa.
-        if(doctor.HoldType == HoldType.EXPIREDSUBSCRIPTION){
+        //Si el paciente tiene un hold por no tener suscripción activa.
+        if(patient.HoldType == HoldType.EXPIREDSUBSCRIPTION){
+
             throw UnpayedSubscriptionException.create();
         }
 
@@ -45,7 +48,8 @@ export class RequestAppointmentUseCase extends Observable{
         //Aquí es donde se registraria la solicitud de cita en el userRepository.
         console.log('El paciente ' + patient.FirstName.value + ' solicitó una cita de '+ specialty + ' con el doctor ' + doctor.FirstName.value + ' para el día ' + this.appointment.Date.value);
 
-        // el owner deberia ser el administrador que registra la solicitud de la cita, nos lo dara el framework mas tarde.
+        // el owner deberia ser el paciente que registra la solicitud de la cita, nos lo dara el framework mas tarde.
+
         this.events.push(DomainEvent.create(
             "Solicitud de cita",{
                 owner: patient.FirstName.value + " " + patient.LastName.value,
