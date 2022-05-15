@@ -38,6 +38,7 @@ import { SubscriptionCreatedAt } from "./domain/valueobjects/subscription/subscr
 import { SubscriptionId } from "./domain/valueobjects/subscription/subscription-id";
 import { SubscriptionPaidAt } from "./domain/valueobjects/subscription/subscription-paid-at";
 import { RegisterPatientUseCase } from "./domain/usecases/register-patient-usecase";
+import { RequestAppointmentUseCase } from "./domain/usecases/request-appointment-usecase";
 
 export class NuevoObservador implements Observer {
     raise(events: DomainEvent[]) {
@@ -141,7 +142,7 @@ async function main() {
 
     console.log(".............................................................");
 
-    console.log(suscription.PaidAt.Value);
+    console.log(suscription.PaidAt.value);
 
     console.log(".............................................................");
     // caso de uso donde se registra el paciente
@@ -159,6 +160,21 @@ async function main() {
         HoldType.NONE);
 
     console.log(suscription.PaidAt.value)
+
+    console.log(".............................................................\n\n");
+    //Caso de uso para soliciar una cita.
+
+    const requestAppointmentUseCase = new RequestAppointmentUseCase();
+
+    requestAppointmentUseCase.add(observador);
+
+    await requestAppointmentUseCase.requestAppointment(
+            patient,
+            doctor,
+            AppointmentDate.create(new Date()),
+            AppointmentType.VIRTUAL,
+            SpecialtyType.CARDIOLOGY
+        );
 }
 
 

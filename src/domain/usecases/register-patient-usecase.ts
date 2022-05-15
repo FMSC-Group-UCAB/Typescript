@@ -36,7 +36,7 @@ export class RegisterPatientUseCase extends Observable {
              patientEmail, 
              patientPhoneNumber,
              patientOcupation, 
-             holdType);
+             holdType = HoldType.EXPIREDSUBSCRIPTION);
 
         // Aqui es donde se registraria el paciente en el userRepository.
         console.log("Paciente registrado con exito.");
@@ -44,7 +44,7 @@ export class RegisterPatientUseCase extends Observable {
         // el owner deberia ser el administrador que registra el paciente, nos lo dara el framework mas tarde.
         this.events.push(DomainEvent.create(
             "Registro de paciente",{
-                owner: this.patient.FirstName.ValueFirstName + " " + this.patient.LastName.ValueLastName
+                owner: this.patient.FirstName.value + " " + this.patient.LastName.value
             }
         ));
         
