@@ -39,6 +39,7 @@ import { SubscriptionId } from "./domain/valueobjects/subscription/subscription-
 import { SubscriptionPaidAt } from "./domain/valueobjects/subscription/subscription-paid-at";
 import { RegisterPatientUseCase } from "./domain/usecases/register-patient-usecase";
 import { RequestAppointmentUseCase } from "./domain/usecases/request-appointment-usecase";
+import { RegisterSubscriptionUseCase } from "./domain/usecases/register-subscription-usecase";
 
 export class NuevoObservador implements Observer {
     raise(events: DomainEvent[]) {
@@ -175,6 +176,24 @@ async function main() {
             AppointmentType.VIRTUAL,
             SpecialtyType.CARDIOLOGY
         );
+
+    console.log(".............................................................\n\n");
+
+    //Caso de uso para registrar una suscripcion.
+    const paypal = new PaypalPayMethod();
+
+    const registerSuscriptionUseCase = new RegisterSubscriptionUseCase(paypal);
+
+    registerSuscriptionUseCase.add(observador);
+
+    await registerSuscriptionUseCase.registerSuscription(
+        SubscriptionId.create(1),
+        patient,
+        SubscriptionCreatedAt.create(new Date()),
+        SubscriptionPaidAt.create(new Date()),
+        null,
+        SuscriptionCostType.BASIC,
+        SuscriptionType.MONTHLY);
 }
 
 
