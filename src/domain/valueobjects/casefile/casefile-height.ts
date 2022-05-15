@@ -4,7 +4,7 @@ export class CaseFileHeight implements IValueObject<CaseFileHeight> {
     private constructor(private readonly height: number) { }
 
     //getter
-    get Height(): number { return this.height; }
+    get value(): number { return this.height; }
 
     equals(other: CaseFileHeight): boolean {
         return this.height == other.height;

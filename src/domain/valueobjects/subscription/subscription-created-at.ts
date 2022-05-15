@@ -4,7 +4,7 @@ import { IValueObject } from "../../interfaces/value-object.interface";
 export class SubscriptionCreatedAt implements IValueObject<SubscriptionCreatedAt>{
     private constructor(private readonly createdAt: Date) { }
 
-    get Value() { return this.createdAt; }
+    get value() { return this.createdAt; }
 
     equals(other: SubscriptionCreatedAt): boolean {
         return this.createdAt == other.createdAt;

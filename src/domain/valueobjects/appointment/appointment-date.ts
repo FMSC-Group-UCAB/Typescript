@@ -2,7 +2,6 @@ import { IValueObject } from "src/domain/interfaces/value-object.interface";
 
 /** AppointmentDate: Es el Value Object de la fecha de una cita. */
 export class AppointmentDate implements IValueObject<AppointmentDate> {
-
     private constructor(private readonly date: Date) { }
 
     //Getter

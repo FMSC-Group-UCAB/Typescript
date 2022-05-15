@@ -123,7 +123,7 @@ async function main() {
         }
     );
 
-    console.log(suscription.PaidAt.Value);
+    console.log(suscription.PaidAt.value);
 
     console.log(".............................................................");
 
@@ -139,7 +139,7 @@ async function main() {
 
     console.log(".............................................................");
 
-    console.log(suscription.PaidAt.Value)
+    console.log(suscription.PaidAt.value)
 }
 
 

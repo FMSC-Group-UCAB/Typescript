@@ -2,11 +2,9 @@
 import {IValueObject} from '../../interfaces/value-object.interface';
 
 export class DoctorLastName implements IValueObject<DoctorLastName> {
-
-
     private constructor(private readonly lastName: String) { }
 
-    get ValueLastName() { return this.lastName; }
+    get value() { return this.lastName; }
 
     equals(other: DoctorLastName): boolean {
         return this.lastName == other.lastName;
