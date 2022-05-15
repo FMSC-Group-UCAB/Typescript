@@ -1,12 +1,12 @@
 import { IValueObject } from "../../interfaces/value-object.interface";
 
 /** SuscriptionCreatedAt: Value Object para las fechas de creación de las suscripciones.*/
-export class SuscriptionCreatedAt implements IValueObject<SuscriptionCreatedAt>{
+export class SubscriptionCreatedAt implements IValueObject<SubscriptionCreatedAt>{
     private constructor(private readonly createdAt: Date) { }
 
     get Value() { return this.createdAt; }
 
-    equals(other: SuscriptionCreatedAt): boolean {
+    equals(other: SubscriptionCreatedAt): boolean {
         return this.createdAt == other.createdAt;
     }
 
@@ -14,11 +14,11 @@ export class SuscriptionCreatedAt implements IValueObject<SuscriptionCreatedAt>{
      * Patron Factory.
      * @param createdAt Fecha de creación de la suscripción.
      * @returns `SuscriptionCreatedAt`.*/
-    public static create(createdAt: Date): SuscriptionCreatedAt {
+    public static create(createdAt: Date): SubscriptionCreatedAt {
         if (createdAt == null || createdAt == undefined) {
             throw new Error("La fecha de creación de una suscriptción no puede ser undefined/null.");
         }
 
-        return new SuscriptionCreatedAt(createdAt);
+        return new SubscriptionCreatedAt(createdAt);
     }
 }
