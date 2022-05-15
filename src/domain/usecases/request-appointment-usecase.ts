@@ -25,6 +25,7 @@ export class RequestAppointmentUseCase extends Observable{
      * @use holdType Tipo de hold que pueda tener un paciente.
      * @returns `Appointment` */
     public requestAppointment(patient: Patient, doctor: Doctor, date: AppointmentDate, appointmentType: AppointmentType, specialty: SpecialtyType){
+
     
         if((patient == null || patient == undefined) || (doctor == null || doctor == undefined)){
             throw Error("El paciente y el doctor no pueden ser null/undefined.");
@@ -37,6 +38,7 @@ export class RequestAppointmentUseCase extends Observable{
 
         //Si el paciente tiene un hold por no tener suscripción activa.
         if(patient.HoldType == HoldType.EXPIREDSUBSCRIPTION){
+
             throw UnpayedSubscriptionException.create();
         }
 
@@ -47,6 +49,7 @@ export class RequestAppointmentUseCase extends Observable{
         console.log('El paciente ' + patient.FirstName.value + ' solicitó una cita de '+ specialty + ' con el doctor ' + doctor.FirstName.value + ' para el día ' + this.appointment.Date.value);
 
         // el owner deberia ser el paciente que registra la solicitud de la cita, nos lo dara el framework mas tarde.
+
         this.events.push(DomainEvent.create(
             "Solicitud de cita",{
                 owner: patient.FirstName.value + " " + patient.LastName.value,
