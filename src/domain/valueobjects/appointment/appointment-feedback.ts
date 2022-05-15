@@ -6,8 +6,8 @@ export class AppointmentFeedback implements IValueObject<AppointmentFeedback> {
     private constructor(private readonly comment: string, private readonly rating: number) { }
 
     //Getter
-    get ValueComment() { return this.comment; }
-    get ValueRating() { return this.rating; }
+    get valueComment() { return this.comment; }
+    get valueRating() { return this.rating; }
 
 
     equals(other: AppointmentFeedback): boolean {

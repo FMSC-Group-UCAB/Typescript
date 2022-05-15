@@ -5,7 +5,7 @@ export class PatientBirthDate implements IValueObject<PatientBirthDate> {
     private constructor(private readonly birthDate: Date) { }
 
     //Getter
-    get ValueDate() { return this.birthDate; }
+    get value() { return this.birthDate; }
 
     equals(other: PatientBirthDate): boolean {
         return this.birthDate == other.birthDate;

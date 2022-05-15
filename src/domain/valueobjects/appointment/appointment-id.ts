@@ -6,7 +6,7 @@ export class AppointmentId implements IValueObject<AppointmentId> {
     private constructor (private readonly id: number) { }
 
     //Getter
-    get ValueId() { return this.id; }
+    get value() { return this.id; }
 
     
     equals(other: AppointmentId): boolean {

@@ -6,7 +6,7 @@ export class AppointmentDate implements IValueObject<AppointmentDate> {
     private constructor(private readonly date: Date) { }
 
     //Getter
-    get ValueDate() { return this.date; }
+    get value() { return this.date; }
 
 
     equals(other: AppointmentDate): boolean {
