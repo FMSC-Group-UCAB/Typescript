@@ -43,16 +43,13 @@ export class RequestAppointmentUseCase extends Observable{
         this.appointment = Appointment.create(AppointmentId.create(1), patient, doctor, StatusType.PENDING, date, appointmentType, specialty);
 
         //Aquí es donde se registraria la solicitud de cita en el userRepository.
-        console.log('El paciente ' + patient.FirstName.value + ' solicitó una cita de '+ specialty + 'con el doctor ' + doctor.FirstName + ' para el día ' + date.toString());
+        console.log('El paciente ' + patient.FirstName.value + ' solicitó una cita de '+ specialty + ' con el doctor ' + doctor.FirstName.value + ' para el día ' + this.appointment.Date.value);
 
         // el owner deberia ser el administrador que registra la solicitud de la cita, nos lo dara el framework mas tarde.
         this.events.push(DomainEvent.create(
             "Solicitud de cita",{
                 owner: patient.FirstName.value + " " + patient.LastName.value,
                 doctor: doctor.FirstName.value + " " + doctor.LastName.value,
-                specialty: specialty,
-                date: date.toString(),
-                appointmentType: appointmentType
             }
         ));
         
