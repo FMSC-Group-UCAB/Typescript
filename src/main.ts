@@ -168,7 +168,7 @@ async function main() {
 
     requestAppointmentUseCase.add(observador);
 
-    await requestAppointmentUseCase.requestAppointment(
+    requestAppointmentUseCase.requestAppointment(
             patient,
             doctor,
             AppointmentDate.create(new Date()),
