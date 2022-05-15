@@ -30,13 +30,13 @@ export class RequestAppointmentUseCase extends Observable{
             throw Error("El paciente y el doctor no pueden ser null/undefined.");
         }
 
-        //Si tiene un hold por mal uso de la aplicación 
+        //Si el paciente tiene un hold por mal uso de la aplicación 
         if(patient.HoldType == HoldType.BADUSE) {
            throw SystemBlockedException.create();
         }
 
-        //Si tiene un hold por no tener suscripción activa.
-        if(doctor.HoldType == HoldType.EXPIREDSUBSCRIPTION){
+        //Si el paciente tiene un hold por no tener suscripción activa.
+        if(patient.HoldType == HoldType.EXPIREDSUBSCRIPTION){
             throw UnpayedSubscriptionException.create();
         }
 
