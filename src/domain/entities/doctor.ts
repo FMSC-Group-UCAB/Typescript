@@ -49,7 +49,14 @@ export class Doctor {
                  return new Doctor(id, firstName, lastName,specialty,location,holdType);
              }
 
-
+        /**
+         * 
+         * @param firstName primer nombre
+         * @param lastName apellido
+         * @param specialty especialidad del doctor
+         * @param location ubicacion del doctor
+         * @param holdType tipo de retencion del doctor
+         */
         public update(
             firstName: DoctorFirstName, 
             lastName: DoctorLastName, 
