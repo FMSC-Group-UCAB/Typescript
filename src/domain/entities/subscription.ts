@@ -1,21 +1,21 @@
 import { SuscriptionCostType } from "../enumerations/suscription-cost-type.enum";
 import { SuscriptionType } from "../enumerations/suscription-type.enum";
-import { SuscriptionClosedAt } from "../valueobjects/suscription/suscription-closed-at";
-import { SuscriptionCreatedAt } from "../valueobjects/suscription/suscription-created-at";
-import { SuscriptionId } from "../valueobjects/suscription/suscription-id";
-import { SuscriptionPaidAt } from "../valueobjects/suscription/suscription-paid-at";
+import { SubscriptionClosedAt } from "../valueobjects/subscription/subscription-closed-at";
+import { SubscriptionCreatedAt } from "../valueobjects/subscription/subscription-created-at";
+import { SubscriptionId } from "../valueobjects/subscription/subscription-id";
+import { SubscriptionPaidAt } from "../valueobjects/subscription/subscription-paid-at";
 import { Patient } from "./patient";
 
 /** Suscription: Es una clase concreta utilizada para el manejo de las suscripcionones del paciente.*/
-export class Suscription {
+export class Subscription {
     private constructor(
-        private readonly id: SuscriptionId,
+        private readonly id: SubscriptionId,
         private readonly patient: Patient,
         private type: SuscriptionType,
         private cost: SuscriptionCostType,
-        private createdAt: SuscriptionCreatedAt,
-        private paidAt: SuscriptionPaidAt,
-        private closedAt: SuscriptionClosedAt,
+        private createdAt: SubscriptionCreatedAt,
+        private paidAt: SubscriptionPaidAt,
+        private closedAt: SubscriptionClosedAt,
     ) {
         this.validate();
     }
@@ -39,8 +39,8 @@ export class Suscription {
      * @param paidAt Fecha de pago de la suscripción.
      * @param closedAt Fecha de cierre de la suscripción.
      * @returns `Suscription`*/
-    public static create(id: SuscriptionId, patient: Patient, type: SuscriptionType, cost: SuscriptionCostType, createdAt: SuscriptionCreatedAt, paidAt: SuscriptionPaidAt, closedAt: SuscriptionClosedAt): Suscription {
-        return new Suscription(id, patient, type, cost, createdAt, paidAt, closedAt);
+    public static create(id: SubscriptionId, patient: Patient, type: SuscriptionType, cost: SuscriptionCostType, createdAt: SubscriptionCreatedAt, paidAt: SubscriptionPaidAt, closedAt: SubscriptionClosedAt): Subscription {
+        return new Subscription(id, patient, type, cost, createdAt, paidAt, closedAt);
     }
 
     /**
@@ -49,7 +49,7 @@ export class Suscription {
      * @param cost Tipo de costo de la suscripción.
      * @param paidAt Fecha de pago de la suscripción.
      * @param closedAt Fecha de cierre de la suscripción.*/
-    public update(type: SuscriptionType, cost: SuscriptionCostType, paidAt: SuscriptionPaidAt, closedAt: SuscriptionClosedAt) {
+    public update(type: SuscriptionType, cost: SuscriptionCostType, paidAt: SubscriptionPaidAt, closedAt: SubscriptionClosedAt) {
         this.type = type;
         this.cost = cost;
         this.paidAt = paidAt;

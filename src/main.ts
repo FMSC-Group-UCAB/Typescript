@@ -1,7 +1,7 @@
 import { Appointment } from "./domain/entities/appointment";
 import { Doctor } from "./domain/entities/doctor";
 import { Patient } from "./domain/entities/patient";
-import { Suscription } from "./domain/entities/suscription";
+import { Subscription } from "./domain/entities/subscription";
 import { AppointmentType } from "./domain/enumerations/appointment-type.enum";
 import { HoldType } from "./domain/enumerations/hold-type.enum";
 import { SpecialtyType } from "./domain/enumerations/specialty-type.enum";
@@ -9,9 +9,10 @@ import { StatusType } from "./domain/enumerations/status-type.enum";
 import { SuscriptionCostType } from "./domain/enumerations/suscription-cost-type.enum";
 import { SuscriptionType } from "./domain/enumerations/suscription-type.enum";
 import { CasefileFactory } from "./domain/factories/casefile-factory";
+import { IPayMethod } from "./domain/interfaces/pay-method.interface";
 import { DomainEvent } from "./domain/observables/domain-event";
-import { Observable } from "./domain/observables/observable";
 import { Observer } from "./domain/observables/observer.interface";
+import { PaySubscriptionUsecase } from "./domain/usecases/pay-subscription-usecase";
 import { AppointmentDate } from "./domain/valueobjects/appointment/appointment-date";
 import { AppointmentId } from "./domain/valueobjects/appointment/appointment-id";
 import { CaseFileBloodPressure } from "./domain/valueobjects/casefile/casefile-bloodPressure";
@@ -32,25 +33,10 @@ import { PatientId } from "./domain/valueobjects/patient/patient-id";
 import { PatientLastName } from "./domain/valueobjects/patient/patient-last-name";
 import { PatientOccupation } from "./domain/valueobjects/patient/patient-occupation";
 import { PatientPhoneNumber } from "./domain/valueobjects/patient/patient-phone-number";
-import { SuscriptionClosedAt } from "./domain/valueobjects/suscription/suscription-closed-at";
-import { SuscriptionCreatedAt } from "./domain/valueobjects/suscription/suscription-created-at";
-import { SuscriptionId } from "./domain/valueobjects/suscription/suscription-id";
-import { SuscriptionPaidAt } from "./domain/valueobjects/suscription/suscription-paid-at";
-
-export class NuevoObservable extends Observable {
-    async run() {
-        let events: DomainEvent[] = [];
-        for (let i = 0; i < 3; i++) {
-            await new Promise(resolve => { setTimeout(resolve, 1000 + (i * 500)) });
-            events.push(DomainEvent.create("CambioNombre", { iteración: i + 1 }));
-            console.log("Event added: " + (i + 1));
-        }
-        await new Promise(resolve => { setTimeout(resolve, 1000) });
-        console.log("Sending...");
-        await new Promise(resolve => { setTimeout(resolve, 1000) });
-        this.notifyAll(events);
-    }
-}
+import { SubscriptionClosedAt } from "./domain/valueobjects/subscription/subscription-closed-at";
+import { SubscriptionCreatedAt } from "./domain/valueobjects/subscription/subscription-created-at";
+import { SubscriptionId } from "./domain/valueobjects/subscription/subscription-id";
+import { SubscriptionPaidAt } from "./domain/valueobjects/subscription/subscription-paid-at";
 
 export class NuevoObservador implements Observer {
     raise(events: DomainEvent[]) {
@@ -60,27 +46,27 @@ export class NuevoObservador implements Observer {
     }
 }
 
+export class PaypalPayMethod implements IPayMethod {
+    async pay(amount: number): Promise<boolean> {
+        await new Promise(resolve => { setTimeout(resolve, 2000) });
+        return true;
+    }
+}
+
 function suscriptionTest() {
     //Suscription test;
-    const susId1 = SuscriptionId.create(5);
-    const susId2 = SuscriptionId.create(4);
+    const susId1 = SubscriptionId.create(5);
+    const susId2 = SubscriptionId.create(4);
     console.log(susId1);
     console.log(susId2);
     console.log(susId1.equals(susId2));
-    console.log(SuscriptionCreatedAt.create(new Date()));
-    console.log(SuscriptionPaidAt.create(new Date()));
-    console.log(SuscriptionClosedAt.create(new Date()));
+    console.log(SubscriptionCreatedAt.create(new Date()));
+    console.log(SubscriptionPaidAt.create(new Date()));
+    console.log(SubscriptionClosedAt.create(new Date()));
 }
 
+
 async function main() {
-    //Observable Test
-    const observable = new NuevoObservable();
-    const observador = new NuevoObservador();
-    observable.add(observador);
-    //await observable.run();
-
-    //suscriptionTest();
-
     const doctor = Doctor.create(
         DoctorId.create(1),
         DoctorFirstName.create("Alberto"),
@@ -110,13 +96,13 @@ async function main() {
         SpecialtyType.CARDIOLOGY
     );
 
-    const suscription = Suscription.create(
-        SuscriptionId.create(1),
+    let suscription = Subscription.create(
+        SubscriptionId.create(1),
         patient,
         SuscriptionType.MONTHLY,
         SuscriptionCostType.BASIC,
-        SuscriptionCreatedAt.create(new Date()),
-        SuscriptionPaidAt.create(new Date()),
+        SubscriptionCreatedAt.create(new Date()),
+        SubscriptionPaidAt.create(new Date()),
         null
     );
 
@@ -137,9 +123,23 @@ async function main() {
         }
     );
 
-    console.log(suscription);
-    console.log(appointment);
-    console.log(casefile);
+    console.log(suscription.PaidAt.Value);
+
+    console.log(".............................................................");
+
+    const observador = new NuevoObservador();
+
+    const paypalMethod = new PaypalPayMethod();
+
+    const paySubscriptionUsecase = new PaySubscriptionUsecase(paypalMethod);
+
+    paySubscriptionUsecase.add(observador);
+
+    await paySubscriptionUsecase.paySuscription(suscription);
+
+    console.log(".............................................................");
+
+    console.log(suscription.PaidAt.Value)
 }
 
 
