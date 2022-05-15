@@ -10,6 +10,7 @@ import { Observable } from "../observables/observable";
 import { AppointmentDate } from "../valueobjects/appointment/appointment-date";
 import { AppointmentId } from "../valueobjects/appointment/appointment-id";
 
+/** RequestAppointmentUseCase: Caso de uso para solicitar una cita */
 export class RequestAppointmentUseCase extends Observable{
     private events: DomainEvent[] = [];
     private appointment: Appointment;
