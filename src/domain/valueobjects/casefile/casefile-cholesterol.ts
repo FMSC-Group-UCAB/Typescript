@@ -8,7 +8,7 @@ export class CaseFileCholesterol implements IValueObject<CaseFileCholesterol> {
     ) { }
 
     //Getter
-    get cholesterolValue() { return this.cholesterol; }
+    get value() { return this.cholesterol; }
     get rangeValue() { return this.range; }
 
     equals(other: CaseFileCholesterol): boolean {

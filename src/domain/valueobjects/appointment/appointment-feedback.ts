@@ -2,7 +2,6 @@ import { IValueObject } from "src/domain/interfaces/value-object.interface";
 
 /** AppointmentFeedback: Es el Value Object de la calificacion de una cita. */
 export class AppointmentFeedback implements IValueObject<AppointmentFeedback> {
-
     private constructor(private readonly comment: string, private readonly rating: number) { }
 
     //Getter

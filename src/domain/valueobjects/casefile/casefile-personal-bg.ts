@@ -4,7 +4,7 @@ export class CaseFilePersonalBg implements IValueObject<CaseFilePersonalBg> {
     private constructor(private readonly personalBg: String) { }
 
     //getter
-    get PersonalBg(): String { return this.personalBg; }
+    get value(): String { return this.personalBg; }
 
     equals(other: CaseFilePersonalBg): boolean {
         return this.personalBg == other.personalBg;

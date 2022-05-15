@@ -4,7 +4,7 @@ export class CaseFileBloodPressure implements IValueObject<CaseFileBloodPressure
     private constructor(private readonly bloodPressure: String) { }
 
     //getter
-    get BloodPressure(): String { return this.bloodPressure; }
+    get value(): String { return this.bloodPressure; }
 
     equals(other: CaseFileBloodPressure): boolean {
         return this.bloodPressure == other.bloodPressure;

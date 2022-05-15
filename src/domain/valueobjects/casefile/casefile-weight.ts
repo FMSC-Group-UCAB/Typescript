@@ -4,7 +4,7 @@ export class CaseFileWeight implements IValueObject<CaseFileWeight> {
     private constructor(private readonly weight: number) { }
 
     //getter
-    get Weight(): number { return this.weight; }
+    get value(): number { return this.weight; }
 
     equals(other: CaseFileWeight): boolean {
         return this.weight == other.weight;
