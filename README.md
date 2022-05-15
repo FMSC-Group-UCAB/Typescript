@@ -52,7 +52,7 @@ La interacción de los objetos se hara el archivo main.ts, el cual se compilara 
 
 | Nombre   | Actividades |
 | ------------------ | ----------- |
-| Froilan Roa        |Creacion de la entidad Doctor con sus Value Objects, creacion del Caso de Uso Registrar Doctor, los Tipos Enumerados de especialidad, retencion y la elavoracion del readme.md      |
+| Froilan Roa        |Creación de la entidad Doctor con sus Value Objects, creación del Caso de Uso Registrar Doctor, los Tipos Enumerados de especialidad, retención y la elaboración del readme.md |
 | Manuel Da Pena     |Creacion de la entidad suscripcion con sus Value Objects, eventos del dominio,          |
 | Santiago Figueroa  |             |
 | Carlos Doffiny S-V |             |
