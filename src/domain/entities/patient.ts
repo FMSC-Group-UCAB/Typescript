@@ -8,19 +8,6 @@ import { PatientPhoneNumber } from "../valueobjects/patient/patient-phone-number
 
 /** Patient: Es una clase concreta utilizada para el manejo de los pacientes.*/
 export class Patient {
-
-    
-    //Getters
-    get Id() { return this.id; }
-    get FirstName() { return this.firstName; }
-    get LastName() { return this.lastName; }
-    get BirthDate() { return this.birthDate; }
-    get Email() { return this.email; }
-    get Phone() { return this.phone; }
-    get Occupation() { return this.occupation; }
-    
-
-    /* Constructor de la clase. */
     private constructor(
         private readonly id: PatientId,
         private firstName: PatientFirstName,
@@ -33,6 +20,14 @@ export class Patient {
         this.validate();
     }
 
+    //Getters
+    get Id() { return this.id; }
+    get FirstName() { return this.firstName; }
+    get LastName() { return this.lastName; }
+    get BirthDate() { return this.birthDate; }
+    get Email() { return this.email; }
+    get Phone() { return this.phone; }
+    get Occupation() { return this.occupation; }
 
     /** Patron Factory.
      * @param id Identificador del paciente.
@@ -47,18 +42,14 @@ export class Patient {
         return new Patient(id, firstName, lastName, birthDate, email, phone, occupation);
     }
 
-
-    ///Métodos de la clase
-
-
-    /** Permite actualizar los datos del paciente.
+    /**
+     * Permite actualizar los datos del paciente.
      * @param firstName Nombre del paciente.
      * @param lastName Apellido del paciente.
      * @param birthDate Fecha de nacimiento del paciente.
      * @param email Correo electrónico del paciente.
      * @param phone Número de teléfono del paciente.
-     * @param occupation Ocupación del paciente.
-     * */
+     * @param occupation Ocupación del paciente. */
     public update(firstName: PatientFirstName, lastName: PatientLastName, birthDate: PatientBirthDate, email: PatientEmail, phone: PatientPhoneNumber, occupation: PatientOccupation) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -66,7 +57,6 @@ export class Patient {
         this.email = email;
         this.phone = phone;
         this.occupation = occupation;
-
         this.validate();
     }
 
@@ -100,5 +90,4 @@ export class Patient {
             throw new Error("La ocupación del paciente no puede ser null/undefined.");
         }
     }
-
 }

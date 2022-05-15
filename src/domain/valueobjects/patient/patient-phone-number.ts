@@ -2,14 +2,12 @@ import { IValueObject } from "src/domain/interfaces/value-object.interface";
 
 /** PatientPhoneNumber: Es el Value Object del numero de telefono del paciente.*/
 export class PatientPhoneNumber implements IValueObject<PatientPhoneNumber> {
-
     private constructor(private readonly phoneNumber: string) { }
 
     //Getter
     get value() { return this.phoneNumber; }
 
-
-    equals = (other: PatientPhoneNumber): boolean => {
+    equals(other: PatientPhoneNumber): boolean {
         return this.phoneNumber == other.phoneNumber;
     }
 

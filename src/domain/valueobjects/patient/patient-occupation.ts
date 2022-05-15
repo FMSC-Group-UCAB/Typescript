@@ -2,17 +2,14 @@ import { IValueObject } from "src/domain/interfaces/value-object.interface";
 
 /** PatientOccupation: Es el Value Object del ocupacion del paciente.*/
 export class PatientOccupation implements IValueObject<PatientOccupation> {
-    
     private constructor(private readonly occupation: string) { }
 
     //Getter
     get value() { return this.occupation; }
 
-
     equals(other: PatientOccupation): boolean {
         return this.occupation == other.occupation;
     }
-
 
     /**Patron Factory.
      * @param occupation Ocupacion del paciente.

@@ -2,18 +2,16 @@ import { IValueObject } from "src/domain/interfaces/value-object.interface";
 
 /** PatientEmail: Es el Value Object del email del paciente.*/
 export class PatientEmail implements IValueObject<PatientEmail> {
-
     private constructor(private readonly email: string) { }
 
     //Getter
     get value() { return this.email; }
 
-
     equals(other: PatientEmail): boolean {
         return this.email == other.email;
     }
 
-    
+
     /**Patron Factory.
      * @param email Email del paciente.
      * @returns `PatientEmail`.*/
