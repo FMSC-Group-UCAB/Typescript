@@ -4,6 +4,6 @@ class SystemBlockedException extends Error {
     }
 
     public static create(): SystemBlockedException {
-        return new SystemBlockedException("El sistema está bloqueado para usted por mal uso.")
+        return new SystemBlockedException("El sistema está bloqueado para el paciente o para el doctor por el mal uso del mismo.")
     }
 }

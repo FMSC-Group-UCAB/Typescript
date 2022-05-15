@@ -31,7 +31,7 @@ export class RequestAppointmentUseCase extends Observable{
         }
 
         //Si el paciente tiene un hold por mal uso de la aplicación 
-        if(patient.HoldType == HoldType.BADUSE) {
+        if(patient.HoldType == HoldType.BADUSE || doctor.HoldType == HoldType.BADUSE) {
            throw SystemBlockedException.create();
         }
 
