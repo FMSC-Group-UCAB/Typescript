@@ -37,6 +37,7 @@ import { SubscriptionClosedAt } from "./domain/valueobjects/subscription/subscri
 import { SubscriptionCreatedAt } from "./domain/valueobjects/subscription/subscription-created-at";
 import { SubscriptionId } from "./domain/valueobjects/subscription/subscription-id";
 import { SubscriptionPaidAt } from "./domain/valueobjects/subscription/subscription-paid-at";
+import { RegisterPatientUseCase } from "./domain/usecases/register-patient-usecase";
 
 export class NuevoObservador implements Observer {
     raise(events: DomainEvent[]) {
@@ -84,6 +85,7 @@ async function main() {
         PatientEmail.create("email@email.com"),
         PatientPhoneNumber.create("+58 (123)153-1532"),
         PatientOccupation.create("Trabajador"),
+        HoldType.NONE
     );
 
     const appointment = Appointment.create(
@@ -138,6 +140,23 @@ async function main() {
     await paySubscriptionUsecase.paySuscription(suscription);
 
     console.log(".............................................................");
+
+    console.log(suscription.PaidAt.Value);
+
+    console.log(".............................................................");
+    // caso de uso donde se registra el paciente
+
+    const registerUseCase = new RegisterPatientUseCase();
+    
+    registerUseCase.registerPatient(
+        PatientId.create(5),
+        PatientFirstName.create("José"),
+        PatientLastName.create("Perez"),
+        PatientBirthDate.create(new Date()),
+        PatientEmail.create("email@email.com"),
+        PatientPhoneNumber.create("+58 (123)153-1532"),
+        PatientOccupation.create("Trabajador"),
+        HoldType.NONE);
 
     console.log(suscription.PaidAt.value)
 }
