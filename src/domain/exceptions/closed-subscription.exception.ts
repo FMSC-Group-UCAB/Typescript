@@ -6,6 +6,7 @@ export class ClosedSubscriptionException extends Exception {
         Object.setPrototypeOf(this, ClosedSubscriptionException.prototype);
     }
 
+    /**Patrón Factory */
     public static create(): ClosedSubscriptionException {
         return new ClosedSubscriptionException();
     }

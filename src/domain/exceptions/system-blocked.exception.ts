@@ -6,6 +6,7 @@ export class SystemBlockedException extends Exception {
         Object.setPrototypeOf(this, SystemBlockedException.prototype);
     }
 
+    /**Patrón Factory */
     public static create(): SystemBlockedException {
         return new SystemBlockedException();
     }
