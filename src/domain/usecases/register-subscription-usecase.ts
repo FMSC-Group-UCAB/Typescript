@@ -9,66 +9,83 @@ import { Subscription } from "../entities/subscription";
 import { Observable } from "../observables/observable";
 import { DomainEvent } from "../observables/domain-event";
 import { IPayMethod } from "../interfaces/pay-method.interface";
+import { IRepository } from "../interfaces/repository.interface";
+import { IClient } from "../interfaces/client.interface";
+import { PatientId } from "../valueobjects/patient/patient-id";
+import { InsufficientPrivilegeException } from "../exceptions/insufficient-privileges.exception";
+import { HoldType } from "../enumerations/hold-type.enum";
+import { SystemBlockedException } from "../exceptions/system-blocked.exception";
+import { PayMethodException } from "../exceptions/pay-method.exception";
 
 export class RegisterSubscriptionUseCase extends Observable {
 
     private events: DomainEvent[] = [];
-    private subscription: Subscription;
 
-    constructor(private readonly payMethod: IPayMethod) {
-        if (payMethod == null || payMethod == undefined) { throw Error("Se debe inyectar un método de pago definido."); }
+    constructor(private readonly payMethod: IPayMethod, private readonly subscriptionRepository: IRepository<Subscription>, private readonly patientRepository: IRepository<Patient>) {
         super();
     }
 
     /**
      * Caso de uso que registra una suscripcion.
-     * @param id identificador de la suscripción
      * @param patient paciente 
      * @param createdAt fecha de creacion de la suscripción
      * @param paidAt fecha de pago de la suscripción
      * @param closedAt fecha de cierre de la suscripción
      * @param costType tipo de costo de la suscripción
-     * @param type tipo de suscripción anual o mensual
-     */
+     * @param type tipo de suscripción anual o mensual */
     public async registerSuscription(
-        id : SubscriptionId,
-        patient: Patient,
-        createdAt: SubscriptionCreatedAt,
-        paidAt : SubscriptionPaidAt,
-        closedAt : SubscriptionClosedAt,
-        costType: SuscriptionCostType,
-        type: SuscriptionType
+        client: IClient,
+        patientId: PatientId,
+        type: SuscriptionType,
+        costType: SuscriptionCostType
     ) {
-        //Se verifica que el metodo de pago sea valido.
+        this.events.push(DomainEvent.create(
+            "Registro de Suscripción Iniciado",
+            {
+                client
+            }
+        ));
+
+        //Verificamos que sea paciente
+        if (!client.isPatient()) { throw InsufficientPrivilegeException.create(); }
+
+        //Buscamos los datos del paciente
+        const patient = await this.patientRepository.findOne({ Id: patientId });
+
+        //Verificamos que no este bloqueado el paciente
+        if (patient.HoldType == HoldType.BADUSE) { throw SystemBlockedException.create(); }
+
+        //Se procede a realizar el pago
         const results = await this.payMethod.pay(costType);
-        
+
         //Si no es asi se lanza una excepcion.
-        if (!results) {
-            throw new Error("No se pudo realizar el pago.");
-        }
+        if (!results) { throw PayMethodException.create(); }
+
         //Se crea la suscripcion.
-        this.subscription = Subscription.create(
-            id,
+        const subscription = Subscription.create(
+            SubscriptionId.create(1),
             patient,
             type,
             costType,
-            createdAt,
-            paidAt,
-            closedAt);
+            SubscriptionCreatedAt.create(new Date()),
+            SubscriptionCreatedAt.create(new Date()),
+            null
+        );
+
+        //Hacemos permanente los cambios
+        await this.subscriptionRepository.save(subscription);
 
         //Se arega el evento a la lista de eventos.
         this.events.push(DomainEvent.create(
             "Registro de Suscripción",
             {
                 owner: patient.FirstName.value + " " + patient.LastName.value,
-                id: "Suscripción #" + id.value,
+                id: "Suscripción #" + subscription.Id.value,
                 cost: "$" + costType,
-            }));
-        
-            //Se notifica a todos los observadores.
+            }
+        ));
+
+        //Se notifica a todos los observadores.
         this.notifyAll(this.events);
-
-    } 
-
-    
+    }
 }

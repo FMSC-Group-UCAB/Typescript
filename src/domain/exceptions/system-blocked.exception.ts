@@ -1,9 +1,20 @@
-class SystemBlockedException extends Error {
-    constructor(m: string) {
-        super(m);
+import { Exception } from "./exception";
+
+export class SystemBlockedException extends Exception {
+    constructor() {
+        super("Permisos denegados por mal uso del sistema");
+        Object.setPrototypeOf(this, SystemBlockedException.prototype);
     }
 
     public static create(): SystemBlockedException {
-        return new SystemBlockedException("El sistema está bloqueado para el paciente o para el doctor por el mal uso del mismo.")
+        return new SystemBlockedException();
+    }
+
+    serializeErrors() {
+        return [
+            {
+                message: "Permisos denegados por mal uso del sistema",
+            },
+        ];
     }
 }
