@@ -68,7 +68,7 @@ export class RegisterSubscriptionUseCase extends Observable {
             type,
             costType,
             SubscriptionCreatedAt.create(new Date()),
-            SubscriptionCreatedAt.create(new Date()),
+            SubscriptionPaidAt.create(new Date()),
             null
         );
 
