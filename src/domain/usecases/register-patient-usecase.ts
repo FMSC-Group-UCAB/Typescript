@@ -9,47 +9,54 @@ import { PatientOccupation } from "../valueobjects/patient/patient-occupation";
 import { HoldType } from "../enumerations/hold-type.enum";
 import { DomainEvent } from "../observables/domain-event"
 import { Observable } from "../observables/observable";
+import { IRepository } from "../interfaces/repository.interface";
 
 
 export class RegisterPatientUseCase extends Observable {
     private events: DomainEvent[] = [];
-    private patient: Patient;
 
-
-    constructor(){
+    constructor(private readonly patientRepository: IRepository<Patient>) {
         super();
     }
 
-    public async registerPatient(patientId: PatientId,
-         patientFirstName: PatientFirstName,
-         patientLastName: PatientLastName,
-         patientBirthDate: PatientBirthDate,
-         patientEmail: PatientEmail,
-         patientPhoneNumber: PatientPhoneNumber,
-         patientOcupation: PatientOccupation,
-         holdType: HoldType){
-
-        this.patient = Patient.create(patientId,
-             patientFirstName, 
-             patientLastName, 
-             patientBirthDate, 
-             patientEmail, 
-             patientPhoneNumber,
-             patientOcupation, 
-             holdType = HoldType.EXPIREDSUBSCRIPTION);
-
-        // Aqui es donde se registraria el paciente en el userRepository.
-        console.log("Paciente registrado con exito.");
-
-        // el owner deberia ser el administrador que registra el paciente, nos lo dara el framework mas tarde.
+    public async registerPatient(
+        patientFirstName: PatientFirstName,
+        patientLastName: PatientLastName,
+        patientBirthDate: PatientBirthDate,
+        patientEmail: PatientEmail,
+        patientPhoneNumber: PatientPhoneNumber,
+        patientOcupation: PatientOccupation,
+        holdType: HoldType
+    ) {
         this.events.push(DomainEvent.create(
-            "Registro de paciente",{
-                owner: this.patient.FirstName.value + " " + this.patient.LastName.value
+            "Registro de paciente Iniciado",
+            {}
+        ));
+
+        const patient = Patient.create(
+            PatientId.create(1),
+            patientFirstName,
+            patientLastName,
+            patientBirthDate,
+            patientEmail,
+            patientPhoneNumber,
+            patientOcupation,
+            holdType = HoldType.EXPIREDSUBSCRIPTION
+        );
+
+        //Hacemos permanente al paciente.
+        await this.patientRepository.save(patient);
+
+        //Emitimos los eventos.
+        this.events.push(DomainEvent.create(
+            "Registro de paciente",
+            {
+                owner: patient.FirstName.value + " " + patient.LastName.value
             }
         ));
-        
-        this.notifyAll(this.events);
 
+        //Notificamos los observadores
+        this.notifyAll(this.events);
     }
 
 }

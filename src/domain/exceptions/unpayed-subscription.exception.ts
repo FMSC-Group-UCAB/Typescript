@@ -1,13 +1,20 @@
-/**UnpayedSubscriptionException: Excepción que se lanza cuando un paciente no tiene una suscripción activa y quiere realizar una 
- * acción que requiere de una. */
-class UnpayedSubscriptionException  extends Error {
+import { Exception } from "./exception";
 
-    constructor(m: string) {
-        super(m);
+export class UnpayedSubscriptionException extends Exception {
+    constructor() {
+        super('No se puede solicitar una cita sin pagar la suscripción.');
+        Object.setPrototypeOf(this, UnpayedSubscriptionException.prototype);
     }
 
-    /**Patrón Factory */
-    static create() {
-        return new UnpayedSubscriptionException('No se puede realizar esta acción sin pagar una suscripción.');
+    public static create(): UnpayedSubscriptionException {
+        return new UnpayedSubscriptionException();
+    }
+
+    serializeErrors() {
+        return [
+            {
+                message: 'No se puede solicitar una cita sin pagar la suscripción.',
+            },
+        ];
     }
 }
