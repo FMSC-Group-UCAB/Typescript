@@ -67,7 +67,7 @@ La interacción de los objetos se hará el archivo main.ts, el cual se compilara
 | Implementación de las entidades Patient y Appointment, con sus respectivos Value Objects y tipos enumerados | https://github.com/FMSC-Group-UCAB/Typescript/pull/12 |
 | Implementación del Caso de Uso "Solicitar cita" con sus excepciones Pt 1                                    | https://github.com/FMSC-Group-UCAB/Typescript/pull/22 |
 | Implementación del Caso de Uso "Solicitar cita" con sus excepciones Pt 2                                    | https://github.com/FMSC-Group-UCAB/Typescript/pull/23 |
-|                                                                                                             
+                                                                                                          
 
 
 
